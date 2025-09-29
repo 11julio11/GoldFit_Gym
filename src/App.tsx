@@ -26,17 +26,6 @@ import {
   Twitter
 } from 'lucide-react';
 
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Trainers from './components/Trainers';
-import Gallery from './components/Gallery';
-import About from './components/About';
-import Nutrition from './components/Nutrition';
-import Plans from './components/Plans';
-import Testimonials from './components/Testimonials';
-import Contact from './components/Contact';
-
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
@@ -66,6 +55,7 @@ function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    setIsMenuOpen(false);
   };
 
   const menuItems = [
@@ -946,37 +936,41 @@ function App() {
                   <input
                     type="text"
                     placeholder="Nombre"
-                    className="bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 transition-colors duration-300"
+                    className="bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white placeholder-gray-400"
                   />
                   <input
                     type="email"
                     placeholder="Email"
-                    className="bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 transition-colors duration-300"
+                    className="bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white placeholder-gray-400"
                   />
                 </div>
+                
                 <input
                   type="tel"
                   placeholder="Teléfono"
-                  className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 transition-colors duration-300"
+                  className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white placeholder-gray-400"
                 />
-                <select className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-yellow-500 transition-colors duration-300">
+
+                <select className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white">
                   <option value="">Selecciona tu objetivo</option>
                   <option value="perdida-peso">Pérdida de peso</option>
                   <option value="ganancia-muscular">Ganancia muscular</option>
-                  <option value="definicion">Definición</option>
                   <option value="rendimiento">Rendimiento deportivo</option>
                   <option value="bienestar">Bienestar general</option>
                 </select>
+                
                 <textarea
                   placeholder="Cuéntanos sobre tus objetivos y experiencia previa..."
-                  rows={4}
-                  className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 transition-colors duration-300 resize-none"
+                  rows={5}
+                  className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 resize-none text-white placeholder-gray-400"
                 ></textarea>
-                <button
+                
+                <button 
                   type="submit"
-                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg shadow-yellow-500/25"
+                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black py-4 rounded-lg font-bold text-lg transition-all duration-300 shadow-lg shadow-yellow-500/25 flex items-center justify-center gap-2"
                 >
-                  Comenzar Mi Transformación
+                  <Zap className="h-5 w-5" />
+                  COMENZAR MI TRANSFORMACIÓN
                 </button>
               </form>
             </div>
@@ -987,73 +981,33 @@ function App() {
       {/* Footer */}
       <footer className="bg-gradient-to-t from-gray-900 to-black py-12 border-t border-yellow-500/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <Dumbbell className="h-8 w-8 text-yellow-500" />
-                <span className="text-xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-                  GoldFit Gym
-                </span>
-              </div>
-              <p className="text-gray-400 mb-4">
-                Forjando leyendas doradas desde 2014. Tu transformación comienza aquí.
-              </p>
-              <div className="flex space-x-4">
-                <Instagram className="h-5 w-5 text-yellow-500 hover:text-yellow-400 cursor-pointer transition-colors duration-300" />
-                <Facebook className="h-5 w-5 text-yellow-500 hover:text-yellow-400 cursor-pointer transition-colors duration-300" />
-                <Twitter className="h-5 w-5 text-yellow-500 hover:text-yellow-400 cursor-pointer transition-colors duration-300" />
-              </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              <Dumbbell className="h-8 w-8 text-yellow-500" />
+              <span className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                GoldFit Gym
+              </span>
             </div>
-            
-            <div>
-              <h4 className="text-yellow-400 font-bold mb-4">Servicios Elite</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li className="hover:text-yellow-400 cursor-pointer transition-colors duration-300">Entrenamiento Personal</li>
-                <li className="hover:text-yellow-400 cursor-pointer transition-colors duration-300">Clases Grupales</li>
-                <li className="hover:text-yellow-400 cursor-pointer transition-colors duration-300">Nutrición Deportiva</li>
-                <li className="hover:text-yellow-400 cursor-pointer transition-colors duration-300">Planes Premium</li>
-              </ul>
+            <p className="text-gray-400 mb-4">
+              Donde nacen las leyendas y se forjan los campeones
+            </p>
+            <div className="flex justify-center space-x-6 mb-6">
+              <button className="text-gray-400 hover:text-yellow-400 transition-colors duration-200">
+                Términos y Condiciones
+              </button>
+              <button className="text-gray-400 hover:text-yellow-400 transition-colors duration-200">
+                Política de Privacidad
+              </button>
+              <button className="text-gray-400 hover:text-yellow-400 transition-colors duration-200">
+                Cancelaciones
+              </button>
             </div>
-            
-            <div>
-              <h4 className="text-yellow-400 font-bold mb-4">Horarios</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>Lunes - Viernes: 5:00 AM - 12:00 AM</li>
-                <li>Sábados: 24 HORAS</li>
-                <li>Domingos: 24 HORAS</li>
-                <li className="text-yellow-500 font-medium">¡Acceso VIP 24/7!</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-yellow-400 font-bold mb-4">Contacto</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>📍 Av. Champions 123</li>
-                <li>📞 +1 (555) GOLD-FIT</li>
-                <li>✉️ elite@goldfitgym.com</li>
-                <li>🌐 www.goldfitgym.com</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="border-t border-yellow-500/30 mt-8 pt-8 text-center">
-            <p className="text-gray-400">
+            <p className="text-gray-500 text-sm">
               © 2024 GoldFit Gym. Todos los derechos reservados. Forjando leyendas desde 2014.
             </p>
           </div>
         </div>
       </footer>
-
-      <Header />
-      <Hero />
-      <Services />
-      <Trainers />
-      <Gallery />
-      <About />
-      <Nutrition />
-      <Plans />
-      <Testimonials />
-      <Contact />
     </div>
   );
 }
