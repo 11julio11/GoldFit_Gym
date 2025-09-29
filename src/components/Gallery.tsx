@@ -1,0 +1,102 @@
+import React from 'react';
+
+const Gallery: React.FC = () => {
+  const galleryItems = [
+    {
+      image: "https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      title: "Zona de Pesas Libres",
+      description: "Área completa con mancuernas y barras olímpicas"
+    },
+    {
+      image: "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      title: "Área de Powerlifting",
+      description: "Plataformas especializadas para levantamiento"
+    },
+    {
+      image: "https://images.pexels.com/photos/1552103/pexels-photo-1552103.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      title: "Zona de Cardio Premium",
+      description: "Equipos de última generación con pantallas HD"
+    },
+    {
+      image: "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      title: "Área de CrossFit",
+      description: "Espacio amplio para entrenamientos funcionales"
+    },
+    {
+      image: "https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      title: "Sala de Spinning",
+      description: "Bicicletas premium con sistema de sonido envolvente"
+    },
+    {
+      image: "https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      title: "Zona de Estiramiento",
+      description: "Área dedicada para calentamiento y recuperación"
+    }
+  ];
+
+  return (
+    <section id="galeria" className="py-20 bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+              NUESTRAS INSTALACIONES
+            </span>
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Descubre nuestras instalaciones de clase mundial, diseñadas para 
+            brindarte la mejor experiencia de entrenamiento.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {galleryItems.map((item, index) => (
+            <div
+              key={index}
+              className="relative group overflow-hidden rounded-xl bg-black/50 backdrop-blur-sm border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300"
+            >
+              <div className="relative overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
+                
+                {/* Premium Badge */}
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-xs font-bold px-3 py-1 rounded-full">
+                  ZONA PREMIUM
+                </div>
+              </div>
+              
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300">
+                  {item.title}
+                </h3>
+                <p className="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-2 rounded-lg font-medium transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-12">
+          <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-4 rounded-lg font-bold text-lg hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-yellow-500/25">
+            AGENDA TU TOUR GRATUITO
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Gallery;
