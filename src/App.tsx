@@ -52,13 +52,18 @@ function App() {
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    if (element) {
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Services from './components/Services';
+import Trainers from './components/Trainers';
+import Gallery from './components/Gallery';
+import About from './components/About';
+import Nutrition from './components/Nutrition';
+import Plans from './components/Plans';
+import Testimonials from './components/Testimonials';
+import Contact from './components/Contact';
       element.scrollIntoView({ behavior: 'smooth' });
     }
-    setIsMenuOpen(false);
-  };
-
-  const menuItems = [
     { id: 'inicio', label: 'Inicio' },
     { id: 'servicios', label: 'Servicios' },
     { id: 'entrenadores', label: 'Entrenadores' },
@@ -936,78 +941,19 @@ function App() {
                   <input
                     type="text"
                     placeholder="Nombre"
-                    className="bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white placeholder-gray-400"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white placeholder-gray-400"
-                  />
-                </div>
-                
-                <input
-                  type="tel"
-                  placeholder="Teléfono"
-                  className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white placeholder-gray-400"
-                />
-
-                <select className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white">
-                  <option value="">Selecciona tu objetivo</option>
-                  <option value="perdida-peso">Pérdida de peso</option>
-                  <option value="ganancia-muscular">Ganancia muscular</option>
-                  <option value="rendimiento">Rendimiento deportivo</option>
-                  <option value="bienestar">Bienestar general</option>
-                </select>
-                
-                <textarea
-                  placeholder="Cuéntanos sobre tus objetivos y experiencia previa..."
-                  rows={5}
-                  className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 resize-none text-white placeholder-gray-400"
-                ></textarea>
-                
-                <button 
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black py-4 rounded-lg font-bold text-lg transition-all duration-300 shadow-lg shadow-yellow-500/25 flex items-center justify-center gap-2"
-                >
-                  <Zap className="h-5 w-5" />
-                  COMENZAR MI TRANSFORMACIÓN
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gradient-to-t from-gray-900 to-black py-12 border-t border-yellow-500/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <Dumbbell className="h-8 w-8 text-yellow-500" />
-              <span className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-                GoldFit Gym
-              </span>
-            </div>
-            <p className="text-gray-400 mb-4">
-              Donde nacen las leyendas y se forjan los campeones
-            </p>
-            <div className="flex justify-center space-x-6 mb-6">
-              <button className="text-gray-400 hover:text-yellow-400 transition-colors duration-200">
-                Términos y Condiciones
-              </button>
-              <button className="text-gray-400 hover:text-yellow-400 transition-colors duration-200">
-                Política de Privacidad
-              </button>
-              <button className="text-gray-400 hover:text-yellow-400 transition-colors duration-200">
-                Cancelaciones
-              </button>
-            </div>
-            <p className="text-gray-500 text-sm">
               © 2024 GoldFit Gym. Todos los derechos reservados. Forjando leyendas desde 2014.
             </p>
           </div>
         </div>
-      </footer>
+      <Hero />
+      <Services />
+      <Trainers />
+      <Gallery />
+      <About />
+      <Nutrition />
+      <Plans />
+      <Testimonials />
+      <Contact />
     </div>
   );
 }
