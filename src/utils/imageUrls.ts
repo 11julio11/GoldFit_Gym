@@ -1,4 +1,4 @@
-// Centralized image URLs - Replace with local images when available
+// URLs de imágenes organizadas por carpetas
 export const imageUrls = {
   hero: {
     background: "/src/assets/images/hero/gym-background.jpg"
@@ -33,5 +33,8 @@ export const imageUrls = {
   },
   contact: {
     location: "/src/assets/images/contact/gym-location.jpg"
+  },
+  logo: {
+    main: "/src/assets/images/logo/Logo.jpeg"
   }
 };
