@@ -1,5 +1,6 @@
 import React from 'react';
 import { Award, Users, Clock, Target, Shield, Zap } from 'lucide-react';
+import { imageUrls } from '../utils/imageUrls';
 
 const About: React.FC = () => {
   const achievements = [
@@ -92,7 +93,7 @@ const About: React.FC = () => {
           <div className="relative">
             <div className="relative overflow-hidden rounded-2xl">
               <img
-                src="https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                src={imageUrls.about.interior}
                 alt="GoldFit Gym Interior"
                 className="w-full h-96 object-cover"
               />

@@ -104,6 +104,12 @@ const Contact: React.FC = () => {
           <div>
             <h3 className="text-2xl font-bold mb-8 text-yellow-400">Comienza Tu Transformación</h3>
             
+            {state.succeeded && (
+              <div className="bg-green-500/20 border border-green-500/50 rounded-lg p-4 mb-6">
+                <p className="text-green-400 font-medium">¡Mensaje enviado exitosamente! Te contactaremos pronto.</p>
+              </div>
+            )}
+            
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
@@ -115,6 +121,7 @@ const Contact: React.FC = () => {
                   className="bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
                   required
                 />
+                <ValidationError prefix="Name" field="name" errors={state.errors} />
                 <input
                   type="email"
                   name="email"
@@ -124,6 +131,7 @@ const Contact: React.FC = () => {
                   className="bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
                   required
                 />
+                <ValidationError prefix="Email" field="email" errors={state.errors} />
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -135,6 +143,7 @@ const Contact: React.FC = () => {
                   onChange={handleInputChange}
                   className="bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
                 />
+                <ValidationError prefix="Phone" field="phone" errors={state.errors} />
                 <select
                   name="objective"
                   value={formData.objective}
@@ -149,6 +158,7 @@ const Contact: React.FC = () => {
                   <option value="rendimiento">Rendimiento Deportivo</option>
                   <option value="rehabilitacion">Rehabilitación</option>
                 </select>
+                <ValidationError prefix="Objective" field="objective" errors={state.errors} />
               </div>
               
               <textarea
@@ -159,14 +169,17 @@ const Contact: React.FC = () => {
                 rows={4}
                 className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300 resize-none"
               ></textarea>
+              <ValidationError prefix="Message" field="message" errors={state.errors} />
               
               <button
                 type="submit"
+                disabled={state.submitting}
                 className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-4 rounded-lg font-bold text-lg hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-yellow-500/25"
               >
                 <Send className="h-5 w-5" />
-                ENVIAR MENSAJE
+                {state.submitting ? 'ENVIANDO...' : 'ENVIAR MENSAJE'}
               </button>
+              <ValidationError errors={state.errors} />
             </form>
           </div>
         </div>

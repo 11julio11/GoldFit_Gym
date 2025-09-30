@@ -1,34 +1,35 @@
 import React from 'react';
+import { imageUrls } from '../utils/imageUrls';
 
 const Gallery: React.FC = () => {
   const galleryItems = [
     {
-      image: "https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      image: imageUrls.gallery.weights,
       title: "Zona de Pesas Libres",
       description: "Área completa con mancuernas y barras olímpicas"
     },
     {
-      image: "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      image: imageUrls.gallery.powerlifting,
       title: "Área de Powerlifting",
       description: "Plataformas especializadas para levantamiento"
     },
     {
-      image: "https://images.pexels.com/photos/1552103/pexels-photo-1552103.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      image: imageUrls.gallery.cardio,
       title: "Zona de Cardio Premium",
       description: "Equipos de última generación con pantallas HD"
     },
     {
-      image: "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      image: imageUrls.gallery.crossfit,
       title: "Área de CrossFit",
       description: "Espacio amplio para entrenamientos funcionales"
     },
     {
-      image: "https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      image: imageUrls.gallery.spinning,
       title: "Sala de Spinning",
       description: "Bicicletas premium con sistema de sonido envolvente"
     },
     {
-      image: "https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      image: imageUrls.gallery.stretching,
       title: "Zona de Estiramiento",
       description: "Área dedicada para calentamiento y recuperación"
     }

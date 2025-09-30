@@ -1,5 +1,6 @@
 import React from 'react';
 import { Play, Award, Users, Clock } from 'lucide-react';
+import { imageUrls } from '../utils/imageUrls';
 
 const Hero: React.FC = () => {
   return (
@@ -8,7 +9,7 @@ const Hero: React.FC = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url("https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop")',
+          backgroundImage: `url("${imageUrls.hero.background}")`,
         }}
       >
         <div className="absolute inset-0 bg-black/70"></div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Award, Star, Calendar } from 'lucide-react';
+import { imageUrls } from '../utils/imageUrls';
 
 const Trainers: React.FC = () => {
   const trainers = [
@@ -8,7 +9,7 @@ const Trainers: React.FC = () => {
       specialty: "Entrenamiento de Fuerza",
       experience: "8 años",
       certifications: ["NSCA-CPT", "ACSM", "Powerlifting Coach"],
-      image: "https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
+      image: imageUrls.trainers.carlos,
       rating: 5,
       description: "Especialista en desarrollo muscular y técnicas de powerlifting avanzadas."
     },
@@ -17,7 +18,7 @@ const Trainers: React.FC = () => {
       specialty: "Fitness Funcional",
       experience: "6 años",
       certifications: ["NASM-CPT", "TRX Instructor", "Yoga Alliance"],
-      image: "https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
+      image: imageUrls.trainers.ana,
       rating: 5,
       description: "Experta en entrenamiento funcional y bienestar integral."
     },
@@ -26,7 +27,7 @@ const Trainers: React.FC = () => {
       specialty: "CrossFit & HIIT",
       experience: "10 años",
       certifications: ["CrossFit Level 3", "HIIT Specialist", "Olympic Lifting"],
-      image: "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
+      image: imageUrls.trainers.miguel,
       rating: 5,
       description: "Campeón regional de CrossFit con experiencia en entrenamiento de alto rendimiento."
     },
@@ -35,7 +36,7 @@ const Trainers: React.FC = () => {
       specialty: "Nutrición Deportiva",
       experience: "7 años",
       certifications: ["Nutricionista Deportiva", "ISSN", "Metabolic Specialist"],
-      image: "https://images.pexels.com/photos/3768997/pexels-photo-3768997.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
+      image: imageUrls.trainers.laura,
       rating: 5,
       description: "Especialista en planes nutricionales personalizados para atletas."
     }

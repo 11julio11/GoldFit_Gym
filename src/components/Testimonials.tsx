@@ -1,5 +1,6 @@
 import React from 'react';
 import { Star, Award, TrendingUp, Target } from 'lucide-react';
+import { imageUrls } from '../utils/imageUrls';
 
 const Testimonials: React.FC = () => {
   const testimonials = [
@@ -7,7 +8,7 @@ const Testimonials: React.FC = () => {
       name: "María González",
       age: 28,
       achievement: "Perdió 15kg en 4 meses",
-      image: "https://images.pexels.com/photos/3768997/pexels-photo-3768997.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+      image: imageUrls.testimonials.maria,
       rating: 5,
       comment: "GoldFit cambió mi vida completamente. Los entrenadores son increíbles y las instalaciones son de primera clase. Nunca pensé que podría lograr tanto en tan poco tiempo.",
       badge: "Transformación del Año",
@@ -17,7 +18,7 @@ const Testimonials: React.FC = () => {
       name: "Carlos Ruiz",
       age: 35,
       achievement: "Ganó 8kg de músculo",
-      image: "https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+      image: imageUrls.testimonials.carlos,
       rating: 5,
       comment: "Después de años entrenando en otros gimnasios, encontré en GoldFit el lugar perfecto. El equipo es excepcional y los resultados hablan por sí solos.",
       badge: "Miembro VIP",
@@ -27,7 +28,7 @@ const Testimonials: React.FC = () => {
       name: "Ana Martínez",
       age: 42,
       achievement: "Completó su primer maratón",
-      image: "https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+      image: imageUrls.testimonials.ana,
       rating: 5,
       comment: "A los 42 años logré correr mi primer maratón gracias al programa de entrenamiento personalizado. El apoyo del equipo fue fundamental para alcanzar mi meta.",
       badge: "Atleta del Mes",
@@ -37,7 +38,7 @@ const Testimonials: React.FC = () => {
       name: "Roberto Silva",
       age: 29,
       achievement: "Mejoró su fuerza en 40%",
-      image: "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+      image: imageUrls.testimonials.roberto,
       rating: 5,
       comment: "La zona de powerlifting es impresionante. He mejorado todos mis levantamientos significativamente. Los entrenadores realmente saben lo que hacen.",
       badge: "Powerlifter Elite",
