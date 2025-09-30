@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 
 const Contact: React.FC = () => {
+  const [state, handleSubmit] = useForm("xldwojob");
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,10 +19,14 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Aquí iría la lógica para enviar el formulario
+    await handleSubmit(e);
+
+    // Limpiar formulario si se envió exitosamente
+    if (state.succeeded) {
+      setFormData({ name: '', email: '', phone: '', objective: '', message: '' });
+    }
   };
 
   const contactInfo = [
@@ -64,7 +70,6 @@ const Contact: React.FC = () => {
           {/* Información de Contacto */}
           <div>
             <h3 className="text-2xl font-bold mb-8 text-yellow-400">Información de Contacto</h3>
-            
             <div className="space-y-6 mb-8">
               {contactInfo.map((info, index) => (
                 <div key={index} className="bg-gray-900/50 backdrop-blur-sm border border-yellow-500/20 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300">
@@ -82,7 +87,6 @@ const Contact: React.FC = () => {
                 </div>
               ))}
             </div>
-
             {/* Redes Sociales */}
             <div>
               <h4 className="font-bold text-yellow-400 mb-4">Síguenos en Redes Sociales</h4>
@@ -103,13 +107,11 @@ const Contact: React.FC = () => {
           {/* Formulario de Contacto */}
           <div>
             <h3 className="text-2xl font-bold mb-8 text-yellow-400">Comienza Tu Transformación</h3>
-            
             {state.succeeded && (
               <div className="bg-green-500/20 border border-green-500/50 rounded-lg p-4 mb-6">
                 <p className="text-green-400 font-medium">¡Mensaje enviado exitosamente! Te contactaremos pronto.</p>
               </div>
             )}
-            
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
@@ -133,7 +135,6 @@ const Contact: React.FC = () => {
                 />
                 <ValidationError prefix="Email" field="email" errors={state.errors} />
               </div>
-              
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
                   type="tel"
@@ -160,7 +161,6 @@ const Contact: React.FC = () => {
                 </select>
                 <ValidationError prefix="Objective" field="objective" errors={state.errors} />
               </div>
-              
               <textarea
                 name="message"
                 placeholder="Cuéntanos sobre tus objetivos y experiencia previa..."
@@ -170,7 +170,6 @@ const Contact: React.FC = () => {
                 className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300 resize-none"
               ></textarea>
               <ValidationError prefix="Message" field="message" errors={state.errors} />
-              
               <button
                 type="submit"
                 disabled={state.submitting}
@@ -183,7 +182,6 @@ const Contact: React.FC = () => {
             </form>
           </div>
         </div>
-
         {/* Mapa o información adicional */}
         <div className="mt-16 bg-gray-900/50 backdrop-blur-sm border border-yellow-500/20 rounded-xl p-8 text-center">
           <h3 className="text-2xl font-bold text-white mb-4">
