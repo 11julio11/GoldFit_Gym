@@ -3,7 +3,7 @@ import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter } from '
 import { useForm, ValidationError } from '@formspree/react';
 
 const Contact: React.FC = () => {
-  const [state, handleSubmit] = useForm("YOUR_FORM_ID"); // Reemplaza con tu Form ID de Formspree
+  const [state, handleSubmit] = useForm("xldwojob"); // Reemplaza con tu Form ID de Formspree
   const [formData, setFormData] = useState({
     name: '',
     email: '',
