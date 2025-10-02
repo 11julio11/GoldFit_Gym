@@ -18,7 +18,7 @@ const Testimonials: React.FC = () => {
       name: "Carlos Ruiz",
       age: 35,
       achievement: "Ganó 8kg de músculo",
-      image: imageUrls.testimonials.carlos,
+      image: imageUrls.testimonials.carlosClient,
       rating: 5,
       comment: "Después de años entrenando en otros gimnasios, encontré en GoldFit el lugar perfecto. El equipo es excepcional y los resultados hablan por sí solos.",
       badge: "Miembro VIP",

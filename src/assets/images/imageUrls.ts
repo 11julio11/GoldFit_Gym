@@ -36,8 +36,9 @@ export const imageUrls = {
   // Testimonials
   testimonials: {
     maria: 'https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=300',
-    carlosClient: 'https://images.pexels.com/photos/1229356/pexels-photo-1229356.jpeg?auto=compress&cs=tinysrgb&w=300',
-    sofia: 'https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg?auto=compress&cs=tinysrgb&w=300'
+    carlosClient: '/src/assets/images/testimonials/carlos-client.jpg',
+    ana: '/src/assets/images/testimonials/ana.jpg',
+    roberto: '/src/assets/images/testimonials/roberto.jpg'
   },
   
   // Nutrition
