@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
@@ -26,7 +27,7 @@ const Contact: React.FC = () => {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('https://formspree.io/f/xldwojob', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,7 +152,7 @@ const Contact: React.FC = () => {
           {/* Formulario */}
           <div className="bg-gray-900 p-8 rounded-xl border border-yellow-500/20">
             <h3 className="text-2xl font-bold text-white mb-6">Envíanos un mensaje</h3>
-            
+
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-green-900/50 border border-green-500 rounded-lg flex items-center">
                 <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
