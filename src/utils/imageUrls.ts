@@ -1,40 +1,29 @@
-// URLs de imágenes organizadas por carpetas
+// Centralized image URLs organized by sections
 export const imageUrls = {
   hero: {
-    background: "/src/assets/images/hero/gym-background.jpg"
+    background: "https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
   },
   about: {
-    interior: "/src/assets/images/about/gym-interior.jpg"
+    interior: "https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
   },
   trainers: {
-    carlos: "/src/assets/images/trainers/carlos.jpg",
-    ana: "/src/assets/images/trainers/ana.jpg",
-    miguel: "/src/assets/images/trainers/miguel.jpg",
-    laura: "/src/assets/images/trainers/laura.jpg"
+    carlos: "https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
+    ana: "https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
+    miguel: "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
+    laura: "https://images.pexels.com/photos/3768997/pexels-photo-3768997.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop"
   },
   gallery: {
-    weights: "/src/assets/images/gallery/weights-area.jpg",
-    powerlifting: "/src/assets/images/gallery/powerlifting-area.jpg",
-    cardio: "/src/assets/images/gallery/cardio-area.jpg",
-    crossfit: "/src/assets/images/gallery/crossfit-area.jpg",
-    spinning: "/src/assets/images/gallery/spinning-room.jpg",
-    stretching: "/src/assets/images/gallery/stretching-area.jpg"
+    weights: "https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    powerlifting: "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    cardio: "https://images.pexels.com/photos/1552103/pexels-photo-1552103.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    crossfit: "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    spinning: "https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    stretching: "https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
   },
   testimonials: {
-    maria: "/src/assets/images/testimonials/maria.jpg",
-    carlos: "/src/assets/images/testimonials/carlos-client.jpg",
-    ana: "/src/assets/images/testimonials/ana-client.jpg",
-    roberto: "/src/assets/images/testimonials/roberto.jpg"
-  },
-  nutrition: {
-    weightLoss: "/src/assets/images/nutrition/weight-loss.jpg",
-    muscleGain: "/src/assets/images/nutrition/muscle-gain.jpg",
-    performance: "/src/assets/images/nutrition/performance.jpg"
-  },
-  contact: {
-    location: "/src/assets/images/contact/gym-location.jpg"
-  },
-  logo: {
-    main: "/src/assets/images/logo/Logo.jpeg"
+    maria: "https://images.pexels.com/photos/3768997/pexels-photo-3768997.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+    carlos: "https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+    ana: "https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
+    roberto: "https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop"
   }
 };
