@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 
 const Contact: React.FC = () => {
+  const [state, handleSubmit] = useForm("YOUR_FORM_ID"); // Reemplaza con tu Form ID de Formspree
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,10 +19,14 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Aquí iría la lógica para enviar el formulario
+    await handleSubmit(e);
+    
+    // Limpiar formulario si se envió exitosamente
+    if (state.succeeded) {
+      setFormData({ name: '', email: '', phone: '', objective: '', message: '' });
+    }
   };
 
   const contactInfo = [
@@ -64,7 +70,6 @@ const Contact: React.FC = () => {
           {/* Información de Contacto */}
           <div>
             <h3 className="text-2xl font-bold mb-8 text-yellow-400">Información de Contacto</h3>
-            
             <div className="space-y-6 mb-8">
               {contactInfo.map((info, index) => (
                 <div key={index} className="bg-gray-900/50 backdrop-blur-sm border border-yellow-500/20 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300">
@@ -109,82 +114,95 @@ const Contact: React.FC = () => {
                 <p className="text-green-400 font-medium">¡Mensaje enviado exitosamente! Te contactaremos pronto.</p>
               </div>
             )}
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
+
+            <form onSubmit={onSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Nombre Completo"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
-                  required
-                />
-                <ValidationError prefix="Name" field="name" errors={state.errors} />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
-                  required
-                />
-                <ValidationError prefix="Email" field="email" errors={state.errors} />
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Nombre Completo"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
+                    required
+                  />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} />
+                </div>
+                
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
+                    required
+                  />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
+                </div>
               </div>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Teléfono"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
-                />
-                <ValidationError prefix="Phone" field="phone" errors={state.errors} />
-                <select
-                  name="objective"
-                  value={formData.objective}
-                  onChange={handleInputChange}
-                  className="bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white focus:border-yellow-500 focus:outline-none transition-colors duration-300"
-                  required
-                >
-                  <option value="">Selecciona tu objetivo</option>
-                  <option value="perdida-peso">Pérdida de Peso</option>
-                  <option value="ganancia-muscular">Ganancia Muscular</option>
-                  <option value="tonificacion">Tonificación</option>
-                  <option value="rendimiento">Rendimiento Deportivo</option>
-                  <option value="rehabilitacion">Rehabilitación</option>
-                </select>
-                <ValidationError prefix="Objective" field="objective" errors={state.errors} />
+                <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Teléfono"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
+                  />
+                  <ValidationError prefix="Phone" field="phone" errors={state.errors} />
+                </div>
+                
+                <div>
+                  <select
+                    name="objective"
+                    value={formData.objective}
+                    onChange={handleInputChange}
+                    className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white focus:border-yellow-500 focus:outline-none transition-colors duration-300"
+                    required
+                  >
+                    <option value="">Selecciona tu objetivo</option>
+                    <option value="perdida-peso">Pérdida de Peso</option>
+                    <option value="ganancia-muscular">Ganancia Muscular</option>
+                    <option value="tonificacion">Tonificación</option>
+                    <option value="rendimiento">Rendimiento Deportivo</option>
+                    <option value="rehabilitacion">Rehabilitación</option>
+                  </select>
+                  <ValidationError prefix="Objective" field="objective" errors={state.errors} />
+                </div>
               </div>
-              
-              <textarea
-                name="message"
-                placeholder="Cuéntanos sobre tus objetivos y experiencia previa..."
-                value={formData.message}
-                onChange={handleInputChange}
-                rows={4}
-                className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300 resize-none"
-              ></textarea>
-              <ValidationError prefix="Message" field="message" errors={state.errors} />
-              
+
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="Cuéntanos sobre tus objetivos y experiencia previa..."
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows={4}
+                  className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300 resize-none"
+                ></textarea>
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
+              </div>
+
               <button
                 type="submit"
                 disabled={state.submitting}
-                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-4 rounded-lg font-bold text-lg hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-yellow-500/25"
+                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-4 rounded-lg font-bold text-lg hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-yellow-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="h-5 w-5" />
                 {state.submitting ? 'ENVIANDO...' : 'ENVIAR MENSAJE'}
               </button>
+              
               <ValidationError errors={state.errors} />
             </form>
           </div>
         </div>
 
-        {/* Mapa o información adicional */}
+        {/* Información adicional */}
         <div className="mt-16 bg-gray-900/50 backdrop-blur-sm border border-yellow-500/20 rounded-xl p-8 text-center">
           <h3 className="text-2xl font-bold text-white mb-4">
             🎯 PRIMERA CLASE GRATUITA
