@@ -93,7 +93,7 @@ const About: React.FC = () => {
           <div className="relative">
             <div className="relative overflow-hidden rounded-2xl">
               <img
-                src={imageUrls.about.interior}
+                src={imageUrls.about.gymInterior}
                 alt="GoldFit Gym Interior"
                 className="w-full h-96 object-cover"
               />
