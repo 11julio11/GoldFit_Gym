@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter } from 'lucide-react';
-import { useForm, ValidationError } from '@formspree/react';
+import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
-  const [state, handleSubmit] = useForm("xldwojob"); // Reemplaza con tu Form ID de Formspree
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,6 +9,10 @@ const Contact: React.FC = () => {
     objective: '',
     message: ''
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -19,13 +21,45 @@ const Contact: React.FC = () => {
     });
   };
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await handleSubmit(e);
-    
-    // Limpiar formulario si se envió exitosamente
-    if (state.succeeded) {
-      setFormData({ name: '', email: '', phone: '', objective: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          objective: formData.objective,
+          message: formData.message,
+          _subject: `Nuevo contacto de ${formData.name} - GoldFit Gym`
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          objective: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Error al enviar el formulario');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+      setErrorMessage('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -33,197 +67,213 @@ const Contact: React.FC = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Ubicación",
-      details: ["Av. Fitness 123", "Ciudad Dorada, CD 12345"]
+      details: ["Av. Fitness 123", "Ciudad Deportiva", "CP 12345"]
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Teléfono",
-      details: ["+1 (555) GOLD-FIT", "+1 (555) 465-3348"]
+      details: ["+1 (555) 123-4567", "+1 (555) 987-6543"]
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      details: ["info@goldfitgym.com", "elite@goldfitgym.com"]
+      details: ["info@goldfitgym.com", "ventas@goldfitgym.com"]
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Horarios",
-      details: ["Lun - Vie: 5:00 AM - 12:00 AM", "Sáb - Dom: 24 HORAS"]
+      details: ["Lun - Vie: 5:00 - 23:00", "Sáb - Dom: 6:00 - 22:00"]
     }
+  ];
+
+  const socialLinks = [
+    { icon: <Instagram className="w-5 h-5" />, name: "Instagram", url: "#" },
+    { icon: <Facebook className="w-5 h-5" />, name: "Facebook", url: "#" },
+    { icon: <Twitter className="w-5 h-5" />, name: "Twitter", url: "#" }
   ];
 
   return (
     <section id="contacto" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-              CONTÁCTANOS
-            </span>
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent mb-4">
+            Contáctanos
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            ¿Listo para comenzar tu transformación? Contáctanos y da el primer paso hacia la grandeza
+            ¿Listo para transformar tu vida? Ponte en contacto con nosotros y comienza tu journey fitness hoy mismo.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Información de Contacto */}
-          <div>
-            <h3 className="text-2xl font-bold mb-8 text-yellow-400">Información de Contacto</h3>
-            <div className="space-y-6 mb-8">
+          {/* Información de contacto */}
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {contactInfo.map((info, index) => (
-                <div key={index} className="bg-gray-900/50 backdrop-blur-sm border border-yellow-500/20 rounded-xl p-6 hover:border-yellow-500/50 transition-all duration-300">
-                  <div className="flex items-start space-x-4">
-                    <div className="text-yellow-400 mt-1">
+                <div key={index} className="bg-gray-900 p-6 rounded-xl border border-yellow-500/20 hover:border-yellow-500/40 transition-all duration-300">
+                  <div className="flex items-center mb-4">
+                    <div className="p-3 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg text-black mr-4">
                       {info.icon}
                     </div>
-                    <div>
-                      <h4 className="font-bold text-white mb-2">{info.title}</h4>
-                      {info.details.map((detail, detailIndex) => (
-                        <p key={detailIndex} className="text-gray-300">{detail}</p>
-                      ))}
-                    </div>
+                    <h3 className="text-xl font-semibold text-white">{info.title}</h3>
+                  </div>
+                  <div className="space-y-1">
+                    {info.details.map((detail, idx) => (
+                      <p key={idx} className="text-gray-300">{detail}</p>
+                    ))}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Redes Sociales */}
-            <div>
-              <h4 className="font-bold text-yellow-400 mb-4">Síguenos en Redes Sociales</h4>
+            {/* Redes sociales */}
+            <div className="bg-gray-900 p-6 rounded-xl border border-yellow-500/20">
+              <h3 className="text-xl font-semibold text-white mb-4">Síguenos en redes</h3>
               <div className="flex space-x-4">
-                <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black p-3 rounded-full hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-110">
-                  <Instagram className="h-5 w-5" />
-                </button>
-                <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black p-3 rounded-full hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-110">
-                  <Facebook className="h-5 w-5" />
-                </button>
-                <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black p-3 rounded-full hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-110">
-                  <Twitter className="h-5 w-5" />
-                </button>
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    className="p-3 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg text-black hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-110"
+                    title={social.name}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
               </div>
+            </div>
+
+            {/* Promoción */}
+            <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 p-6 rounded-xl text-black">
+              <h3 className="text-xl font-bold mb-2">🎉 ¡Primera Clase GRATIS!</h3>
+              <p className="font-medium">
+                Agenda tu primera sesión sin costo y descubre por qué somos el mejor gimnasio de la ciudad.
+              </p>
             </div>
           </div>
 
-          {/* Formulario de Contacto */}
-          <div>
-            <h3 className="text-2xl font-bold mb-8 text-yellow-400">Comienza Tu Transformación</h3>
+          {/* Formulario */}
+          <div className="bg-gray-900 p-8 rounded-xl border border-yellow-500/20">
+            <h3 className="text-2xl font-bold text-white mb-6">Envíanos un mensaje</h3>
             
-            {state.succeeded && (
-              <div className="bg-green-500/20 border border-green-500/50 rounded-lg p-4 mb-6">
-                <p className="text-green-400 font-medium">¡Mensaje enviado exitosamente! Te contactaremos pronto.</p>
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-900/50 border border-green-500 rounded-lg flex items-center">
+                <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
+                <p className="text-green-400">¡Mensaje enviado exitosamente! Te contactaremos pronto.</p>
               </div>
             )}
 
-            <form onSubmit={onSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-900/50 border border-red-500 rounded-lg flex items-center">
+                <AlertCircle className="w-5 h-5 text-red-400 mr-3" />
+                <p className="text-red-400">{errorMessage}</p>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                    Nombre completo *
+                  </label>
                   <input
                     type="text"
+                    id="name"
                     name="name"
-                    placeholder="Nombre Completo"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
                     required
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors"
+                    placeholder="Tu nombre"
                   />
-                  <ValidationError prefix="Name" field="name" errors={state.errors} />
                 </div>
-                
                 <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                    Email *
+                  </label>
                   <input
                     type="email"
+                    id="email"
                     name="email"
-                    placeholder="Email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
                     required
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors"
+                    placeholder="tu@email.com"
                   />
-                  <ValidationError prefix="Email" field="email" errors={state.errors} />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
+                    Teléfono
+                  </label>
                   <input
                     type="tel"
+                    id="phone"
                     name="phone"
-                    placeholder="Teléfono"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors"
+                    placeholder="+1 (555) 123-4567"
                   />
-                  <ValidationError prefix="Phone" field="phone" errors={state.errors} />
                 </div>
-                
                 <div>
+                  <label htmlFor="objective" className="block text-sm font-medium text-gray-300 mb-2">
+                    Objetivo principal
+                  </label>
                   <select
+                    id="objective"
                     name="objective"
                     value={formData.objective}
                     onChange={handleInputChange}
-                    className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white focus:border-yellow-500 focus:outline-none transition-colors duration-300"
-                    required
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors"
                   >
-                    <option value="">Selecciona tu objetivo</option>
-                    <option value="perdida-peso">Pérdida de Peso</option>
-                    <option value="ganancia-muscular">Ganancia Muscular</option>
-                    <option value="tonificacion">Tonificación</option>
-                    <option value="rendimiento">Rendimiento Deportivo</option>
+                    <option value="">Selecciona un objetivo</option>
+                    <option value="perder-peso">Perder peso</option>
+                    <option value="ganar-musculo">Ganar músculo</option>
+                    <option value="mantenerse-en-forma">Mantenerse en forma</option>
+                    <option value="entrenamiento-funcional">Entrenamiento funcional</option>
                     <option value="rehabilitacion">Rehabilitación</option>
+                    <option value="competencia">Preparación para competencia</option>
                   </select>
-                  <ValidationError prefix="Objective" field="objective" errors={state.errors} />
                 </div>
               </div>
 
               <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                  Mensaje *
+                </label>
                 <textarea
+                  id="message"
                   name="message"
-                  placeholder="Cuéntanos sobre tus objetivos y experiencia previa..."
                   value={formData.message}
                   onChange={handleInputChange}
-                  rows={4}
-                  className="w-full bg-gray-900/50 border border-yellow-500/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-yellow-500 focus:outline-none transition-colors duration-300 resize-none"
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors resize-none"
+                  placeholder="Cuéntanos sobre tus objetivos, experiencia previa, horarios preferidos, etc."
                 ></textarea>
-                <ValidationError prefix="Message" field="message" errors={state.errors} />
               </div>
 
               <button
                 type="submit"
-                disabled={state.submitting}
-                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-4 rounded-lg font-bold text-lg hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-yellow-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold py-4 px-6 rounded-lg hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center"
               >
-                <Send className="h-5 w-5" />
-                {state.submitting ? 'ENVIANDO...' : 'ENVIAR MENSAJE'}
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black mr-3"></div>
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5 mr-2" />
+                    Enviar mensaje
+                  </>
+                )}
               </button>
-              
-              <ValidationError errors={state.errors} />
             </form>
-          </div>
-        </div>
-
-        {/* Información adicional */}
-        <div className="mt-16 bg-gray-900/50 backdrop-blur-sm border border-yellow-500/20 rounded-xl p-8 text-center">
-          <h3 className="text-2xl font-bold text-white mb-4">
-            🎯 PRIMERA CLASE GRATUITA
-          </h3>
-          <p className="text-gray-300 mb-6">
-            Ven y conoce nuestras instalaciones. Tu primera clase es completamente gratis, 
-            sin compromisos. Descubre por qué somos el gimnasio #1 de la ciudad.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <div className="text-yellow-400 text-2xl font-bold">100%</div>
-              <div className="text-gray-400">Satisfacción Garantizada</div>
-            </div>
-            <div>
-              <div className="text-yellow-400 text-2xl font-bold">24/7</div>
-              <div className="text-gray-400">Soporte Disponible</div>
-            </div>
-            <div>
-              <div className="text-yellow-400 text-2xl font-bold">0$</div>
-              <div className="text-gray-400">Primera Clase</div>
-            </div>
           </div>
         </div>
       </div>

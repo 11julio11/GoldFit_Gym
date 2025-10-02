@@ -1,6 +1,6 @@
 import React from 'react';
 import { Award, Users, Clock, Target, Shield, Zap } from 'lucide-react';
-import { imageUrls } from '../utils/imageUrls';
+import { imageUrls } from '../assets/images/imageUrls';
 
 const About: React.FC = () => {
   const achievements = [

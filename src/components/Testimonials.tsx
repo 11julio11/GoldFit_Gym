@@ -1,6 +1,6 @@
 import React from 'react';
 import { Star, Award, TrendingUp, Target } from 'lucide-react';
-import { imageUrls } from '../utils/imageUrls';
+import { imageUrls } from '../assets/images/imageUrls';
 
 const Testimonials: React.FC = () => {
   const testimonials = [

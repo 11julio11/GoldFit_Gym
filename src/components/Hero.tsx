@@ -1,6 +1,6 @@
 import React from 'react';
 import { Play, Award, Users, Clock } from 'lucide-react';
-import { imageUrls } from '../utils/imageUrls';
+import { imageUrls } from '../assets/images/imageUrls';
 
 const Hero: React.FC = () => {
   return (

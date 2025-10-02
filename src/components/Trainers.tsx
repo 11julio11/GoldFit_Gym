@@ -1,6 +1,6 @@
 import React from 'react';
 import { Award, Star, Calendar } from 'lucide-react';
-import { imageUrls } from '../utils/imageUrls';
+import { imageUrls } from '../assets/images/imageUrls';
 
 const Trainers: React.FC = () => {
   const trainers = [
