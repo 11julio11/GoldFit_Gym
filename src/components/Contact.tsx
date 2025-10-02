@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
+  const [state, handleSubmit] = useForm("YOUR_FORM_ID"); // Reemplaza con tu ID real
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,53 +12,21 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      const response = await fetch('https://formspree.io/f/xldwojob', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          objective: formData.objective,
-          message: formData.message,
-          _subject: `Nuevo contacto de ${formData.name} - GoldFit Gym`
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          objective: '',
-          message: ''
-        });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+    await handleSubmit(e);
+    
+    // Limpiar formulario si se envió exitosamente
+    if (state.succeeded) {
+      setFormData({ name: '', email: '', phone: '', objective: '', message: '' });
     }
   };
 
@@ -152,21 +122,21 @@ const Contact: React.FC = () => {
           <div className="bg-gray-900 p-8 rounded-xl border border-yellow-500/20">
             <h3 className="text-2xl font-bold text-white mb-6">Envíanos un mensaje</h3>
 
-            {submitStatus === 'success' && (
+            {state.succeeded && (
               <div className="mb-6 p-4 bg-green-900/50 border border-green-500 rounded-lg flex items-center">
                 <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
                 <p className="text-green-400">¡Mensaje enviado exitosamente! Te contactaremos pronto.</p>
               </div>
             )}
 
-            {submitStatus === 'error' && (
+            {state.errors && state.errors.length > 0 && (
               <div className="mb-6 p-4 bg-red-900/50 border border-red-500 rounded-lg flex items-center">
                 <AlertCircle className="w-5 h-5 text-red-400 mr-3" />
                 <p className="text-red-400">Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.</p>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={onSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -177,11 +147,16 @@ const Contact: React.FC = () => {
                     id="name"
                     name="name"
                     value={formData.name}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                     required
-                    disabled={isSubmitting}
+                    disabled={state.submitting}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors disabled:opacity-50"
                     placeholder="Tu nombre"
+                  />
+                  <ValidationError 
+                    prefix="Name" 
+                    field="name"
+                    errors={state.errors}
                   />
                 </div>
                 <div>
@@ -193,11 +168,16 @@ const Contact: React.FC = () => {
                     id="email"
                     name="email"
                     value={formData.email}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                     required
-                    disabled={isSubmitting}
+                    disabled={state.submitting}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors disabled:opacity-50"
                     placeholder="tu@email.com"
+                  />
+                  <ValidationError 
+                    prefix="Email" 
+                    field="email"
+                    errors={state.errors}
                   />
                 </div>
               </div>
@@ -212,10 +192,15 @@ const Contact: React.FC = () => {
                     id="phone"
                     name="phone"
                     value={formData.phone}
-                    onChange={handleInputChange}
-                    disabled={isSubmitting}
+                    onChange={handleChange}
+                    disabled={state.submitting}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors disabled:opacity-50"
                     placeholder="+1 (555) 123-4567"
+                  />
+                  <ValidationError 
+                    prefix="Phone" 
+                    field="phone"
+                    errors={state.errors}
                   />
                 </div>
                 <div>
@@ -226,8 +211,8 @@ const Contact: React.FC = () => {
                     id="objective"
                     name="objective"
                     value={formData.objective}
-                    onChange={handleInputChange}
-                    disabled={isSubmitting}
+                    onChange={handleChange}
+                    disabled={state.submitting}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors disabled:opacity-50"
                   >
                     <option value="">Selecciona un objetivo</option>
@@ -238,6 +223,11 @@ const Contact: React.FC = () => {
                     <option value="rehabilitacion">Rehabilitación</option>
                     <option value="competencia">Preparación para competencia</option>
                   </select>
+                  <ValidationError 
+                    prefix="Objective" 
+                    field="objective"
+                    errors={state.errors}
+                  />
                 </div>
               </div>
 
@@ -249,21 +239,26 @@ const Contact: React.FC = () => {
                   id="message"
                   name="message"
                   value={formData.message}
-                  onChange={handleInputChange}
+                  onChange={handleChange}
                   required
                   rows={5}
-                  disabled={isSubmitting}
+                  disabled={state.submitting}
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors resize-none disabled:opacity-50"
                   placeholder="Cuéntanos sobre tus objetivos, experiencia previa, horarios preferidos, etc."
                 ></textarea>
+                <ValidationError 
+                  prefix="Message" 
+                  field="message"
+                  errors={state.errors}
+                />
               </div>
 
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={state.submitting}
                 className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold py-4 px-6 rounded-lg hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center"
               >
-                {isSubmitting ? (
+                {state.submitting ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black mr-3"></div>
                     Enviando...
