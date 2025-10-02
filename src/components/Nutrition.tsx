@@ -1,6 +1,6 @@
 import React from 'react';
 import { Apple, Target, TrendingUp, Award, Clock, Users } from 'lucide-react';
-
+import { imageUrls } from '../assets/images/imageUrls';
 const Nutrition: React.FC = () => {
   const nutritionPlans = [
     {

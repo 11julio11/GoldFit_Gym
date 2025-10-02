@@ -1,5 +1,5 @@
 import React from 'react';
-import { imageUrls } from '../utils/imageUrls';
+import { imageUrls } from '../assets/images/imageUrls';
 
 const Gallery: React.FC = () => {
   const galleryItems = [
