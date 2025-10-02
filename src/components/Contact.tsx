@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
-import { useForm } from '@formspree/react';
 
 const Contact: React.FC = () => {
-  const [state, handleSubmit] = useForm("YOUR_FORM_ID"); // Reemplaza con tu Form ID real
-  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,6 +10,9 @@ const Contact: React.FC = () => {
     message: ''
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
@@ -20,30 +20,43 @@ const Contact: React.FC = () => {
     });
   };
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Crear FormData para Formspree
-    const formDataToSend = new FormData();
-    formDataToSend.append('name', formData.name);
-    formDataToSend.append('email', formData.email);
-    formDataToSend.append('phone', formData.phone);
-    formDataToSend.append('objective', formData.objective);
-    formDataToSend.append('message', formData.message);
-    formDataToSend.append('_subject', `Nuevo contacto de ${formData.name} - GoldFit Gym`);
-    
-    // Enviar a Formspree
-    await handleSubmit(formDataToSend);
-    
-    // Limpiar formulario si fue exitoso
-    if (state.succeeded) {
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        objective: '',
-        message: ''
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          objective: formData.objective,
+          message: formData.message,
+          _subject: `Nuevo contacto de ${formData.name} - GoldFit Gym`
+        }),
       });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          objective: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -139,21 +152,21 @@ const Contact: React.FC = () => {
           <div className="bg-gray-900 p-8 rounded-xl border border-yellow-500/20">
             <h3 className="text-2xl font-bold text-white mb-6">Envíanos un mensaje</h3>
             
-            {state.succeeded && (
+            {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-green-900/50 border border-green-500 rounded-lg flex items-center">
                 <CheckCircle className="w-5 h-5 text-green-400 mr-3" />
                 <p className="text-green-400">¡Mensaje enviado exitosamente! Te contactaremos pronto.</p>
               </div>
             )}
 
-            {state.errors && state.errors.length > 0 && (
+            {submitStatus === 'error' && (
               <div className="mb-6 p-4 bg-red-900/50 border border-red-500 rounded-lg flex items-center">
                 <AlertCircle className="w-5 h-5 text-red-400 mr-3" />
                 <p className="text-red-400">Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.</p>
               </div>
             )}
 
-            <form onSubmit={onSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -166,7 +179,7 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    disabled={state.submitting}
+                    disabled={isSubmitting}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors disabled:opacity-50"
                     placeholder="Tu nombre"
                   />
@@ -182,7 +195,7 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    disabled={state.submitting}
+                    disabled={isSubmitting}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors disabled:opacity-50"
                     placeholder="tu@email.com"
                   />
@@ -200,7 +213,7 @@ const Contact: React.FC = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    disabled={state.submitting}
+                    disabled={isSubmitting}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors disabled:opacity-50"
                     placeholder="+1 (555) 123-4567"
                   />
@@ -214,7 +227,7 @@ const Contact: React.FC = () => {
                     name="objective"
                     value={formData.objective}
                     onChange={handleInputChange}
-                    disabled={state.submitting}
+                    disabled={isSubmitting}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors disabled:opacity-50"
                   >
                     <option value="">Selecciona un objetivo</option>
@@ -239,7 +252,7 @@ const Contact: React.FC = () => {
                   onChange={handleInputChange}
                   required
                   rows={5}
-                  disabled={state.submitting}
+                  disabled={isSubmitting}
                   className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors resize-none disabled:opacity-50"
                   placeholder="Cuéntanos sobre tus objetivos, experiencia previa, horarios preferidos, etc."
                 ></textarea>
@@ -247,10 +260,10 @@ const Contact: React.FC = () => {
 
               <button
                 type="submit"
-                disabled={state.submitting}
+                disabled={isSubmitting}
                 className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold py-4 px-6 rounded-lg hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center"
               >
-                {state.submitting ? (
+                {isSubmitting ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black mr-3"></div>
                     Enviando...
