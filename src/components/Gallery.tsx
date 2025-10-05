@@ -1,5 +1,6 @@
 import React from 'react';
 import { imageUrls } from '../assets/images/imageUrls';
+import { Play } from 'lucide-react';
 
 const Gallery: React.FC = () => {
   const [selectedVideo, setSelectedVideo] = React.useState<string | null>(null);
@@ -30,11 +31,12 @@ const Gallery: React.FC = () => {
       title: "Rutina de Cardio HIIT",
       description: "Sesión completa de cardio de alta intensidad"
     },
-    {
-      image: imageUrls.gallery.cardio,
-      title: "Zona de Cardio Premium",
-      description: "Equipos de última generación con pantallas HD"
-    },
+      {
+        type: 'image',
+        image: imageUrls.gallery.cardio,
+        title: "Zona de Cardio Premium",
+        description: "Equipos de última generación con pantallas HD"
+      },
     {
       type: 'video',
       video: imageUrls.videos.classPreview,
@@ -55,11 +57,12 @@ const Gallery: React.FC = () => {
       title: "Rutina de Estiramiento",
       description: "Técnicas de recuperación y flexibilidad"
     },
-    {
-      image: imageUrls.gallery.spinning,
-      title: "Sala de Spinning",
-      description: "Bicicletas premium con sistema de sonido envolvente"
-    },
+      {
+        type: 'image',
+        image: imageUrls.gallery.spinning,
+        title: "Sala de Spinning",
+        description: "Bicicletas premium con sistema de sonido envolvente"
+      },
     {
       type: 'video',
       video: imageUrls.videos.facilityTour,
@@ -75,7 +78,7 @@ const Gallery: React.FC = () => {
     }
   ];
 
-  const [selectedVideo, setSelectedVideo] = React.useState<string | null>(null);
+    // Eliminada duplicidad del estado
 
   return (
     <section id="galeria" className="py-20 bg-gray-900">
@@ -97,7 +100,7 @@ const Gallery: React.FC = () => {
             <div
               key={index}
               className="relative group overflow-hidden rounded-xl bg-black/50 backdrop-blur-sm border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300"
-              onClick={() => item.type === 'video' && setSelectedVideo(item.video)}
+              onClick={() => item.type === 'video' && item.video ? setSelectedVideo(item.video) : setSelectedVideo(null)}
             >
               <div className="relative overflow-hidden">
                 <img
