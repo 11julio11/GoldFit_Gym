@@ -23,6 +23,11 @@ const Trainers: React.FC = () => {
         facebook: "https://facebook.com/carlosmendoza.trainer",
         tiktok: "https://tiktok.com/@carlosmendoza_fit"
       }
+      socialMedia: {
+        instagram: "https://instagram.com/carlosmendoza_fit",
+        facebook: "https://facebook.com/carlosmendoza.trainer",
+        tiktok: "https://tiktok.com/@carlosmendoza_fit"
+      }
     },
     {
       name: "Ana García",
@@ -32,6 +37,11 @@ const Trainers: React.FC = () => {
       image: imageUrls.trainers.ana,
       rating: 5,
       description: "Experta en entrenamiento funcional y bienestar integral.",
+      socialMedia: {
+        instagram: "https://instagram.com/ana_garcia_fit",
+        facebook: "https://facebook.com/ana.garcia.trainer",
+        tiktok: "https://tiktok.com/@ana_garcia_fit"
+      }
       socialMedia: {
         instagram: "https://instagram.com/ana_garcia_fit",
         facebook: "https://facebook.com/ana.garcia.trainer",
@@ -51,6 +61,11 @@ const Trainers: React.FC = () => {
         facebook: "https://facebook.com/miguel.torres.crossfit",
         tiktok: "https://tiktok.com/@miguel_torres_crossfit"
       }
+      socialMedia: {
+        instagram: "https://instagram.com/miguel_torres_crossfit",
+        facebook: "https://facebook.com/miguel.torres.crossfit",
+        tiktok: "https://tiktok.com/@miguel_torres_crossfit"
+      }
     },
     {
       name: "Laura Martínez",
@@ -60,6 +75,11 @@ const Trainers: React.FC = () => {
       image: imageUrls.trainers.laura,
       rating: 5,
       description: "Especialista en planes nutricionales personalizados para atletas.",
+      socialMedia: {
+        instagram: "https://instagram.com/laura_martinez_nutrition",
+        facebook: "https://facebook.com/laura.martinez.nutrition",
+        tiktok: "https://tiktok.com/@laura_martinez_nutrition"
+      }
       socialMedia: {
         instagram: "https://instagram.com/laura_martinez_nutrition",
         facebook: "https://facebook.com/laura.martinez.nutrition",
@@ -101,6 +121,42 @@ const Trainers: React.FC = () => {
                   <Star className="w-4 h-4 text-yellow-400 fill-current" />
                   <span className="text-white text-sm font-medium">{trainer.rating}</span>
                 </div>
+                
+                {/* Social Media Overlay - Aparece en hover */}
+                <div className="absolute inset-0 bg-black/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="text-center">
+                    <p className="text-white text-sm mb-6 font-medium">Sígueme en mis redes:</p>
+                    <div className="flex space-x-4 justify-center">
+                      <a
+                        href={trainer.socialMedia.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-gradient-to-r from-pink-500 to-purple-600 p-3 rounded-full text-white hover:scale-110 transition-transform duration-300 shadow-lg"
+                        title="Instagram"
+                      >
+                        <Instagram className="w-6 h-6" />
+                      </a>
+                      <a
+                        href={trainer.socialMedia.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-blue-600 p-3 rounded-full text-white hover:scale-110 transition-transform duration-300 shadow-lg"
+                        title="Facebook"
+                      >
+                        <Facebook className="w-6 h-6" />
+                      </a>
+                      <a
+                        href={trainer.socialMedia.tiktok}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-black p-3 rounded-full text-white hover:scale-110 transition-transform duration-300 shadow-lg border-2 border-white"
+                        title="TikTok"
+                      >
+                        <TikTokIcon />
+                      </a>
+                    </div>
+                  </div>
+                 div>
                 
                 {/* Social Media Overlay - Aparece en hover */}
                 <div className="absolute inset-0 bg-black/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
