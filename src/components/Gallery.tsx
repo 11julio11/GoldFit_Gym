@@ -1,39 +1,69 @@
 import React from 'react';
+import { Play } from 'lucide-react';
 import { imageUrls } from '../assets/images/imageUrls';
 
 const Gallery: React.FC = () => {
   const galleryItems = [
     {
+      type: 'image',
       image: imageUrls.gallery.weights,
       title: "Zona de Pesas Libres",
       description: "Área completa con mancuernas y barras olímpicas"
     },
     {
+      type: 'video',
+      video: imageUrls.videos.workoutDemo,
+      thumbnail: imageUrls.gallery.powerlifting,
+      title: "Demo de Entrenamiento",
+      description: "Mira cómo entrenan nuestros miembros"
+    },
+    {
+      type: 'image',
       image: imageUrls.gallery.powerlifting,
       title: "Área de Powerlifting",
       description: "Plataformas especializadas para levantamiento"
     },
     {
+      type: 'image',
       image: imageUrls.gallery.cardio,
       title: "Zona de Cardio Premium",
       description: "Equipos de última generación con pantallas HD"
     },
     {
+      type: 'video',
+      video: imageUrls.videos.classPreview,
+      thumbnail: imageUrls.gallery.spinning,
+      title: "Clases en Vivo",
+      description: "Experimenta nuestras clases grupales"
+    },
+    {
+      type: 'image',
       image: imageUrls.gallery.crossfit,
       title: "Área de CrossFit",
       description: "Espacio amplio para entrenamientos funcionales"
     },
     {
+      type: 'image',
       image: imageUrls.gallery.spinning,
       title: "Sala de Spinning",
       description: "Bicicletas premium con sistema de sonido envolvente"
     },
     {
+      type: 'video',
+      video: imageUrls.videos.facilityTour,
+      thumbnail: imageUrls.gallery.stretching,
+      title: "Tour Virtual",
+      description: "Recorre nuestras instalaciones completas"
+    },
+    {
+      type: 'image',
       image: imageUrls.gallery.stretching,
       title: "Zona de Estiramiento",
       description: "Área dedicada para calentamiento y recuperación"
     }
   ];
+
+  const [selectedVideo, setSelectedVideo] = React.useState<string | null>(null);
 
   return (
     <section id="galeria" className="py-20 bg-gray-900">
@@ -55,18 +85,30 @@ const Gallery: React.FC = () => {
             <div
               key={index}
               className="relative group overflow-hidden rounded-xl bg-black/50 backdrop-blur-sm border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300"
+              onClick={() => item.type === 'video' && setSelectedVideo(item.video)}
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={item.image}
+                  src={item.type === 'video' ? item.thumbnail : item.image}
                   alt={item.title}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className={`w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 ${
+                    item.type === 'video' ? 'cursor-pointer' : ''
+                  }`}
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
                 
+                {/* Video Play Button */}
+                {item.type === 'video' && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-yellow-400 rounded-full p-4 group-hover:scale-110 transition-transform duration-300">
+                      <Play className="w-8 h-8 text-black fill-current" />
+                    </div>
+                  </div>
+                )}
+                
                 {/* Premium Badge */}
                 <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-xs font-bold px-3 py-1 rounded-full">
-                  ZONA PREMIUM
+                  {item.type === 'video' ? 'VIDEO' : 'ZONA PREMIUM'}
                 </div>
               </div>
               
@@ -82,12 +124,35 @@ const Gallery: React.FC = () => {
               {/* Hover Overlay */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-2 rounded-lg font-medium transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                  Ver Detalles
+                  {item.type === 'video' ? 'Reproducir Video' : 'Ver Detalles'}
                 </button>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Video Modal */}
+        {selectedVideo && (
+          <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
+            <div className="relative max-w-4xl w-full">
+              <button
+                onClick={() => setSelectedVideo(null)}
+                className="absolute -top-12 right-0 text-white hover:text-yellow-400 text-2xl font-bold"
+              >
+                ✕
+              </button>
+              <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
+                <iframe
+                  src={selectedVideo}
+                  className="absolute top-0 left-0 w-full h-full"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Call to Action */}
         <div className="text-center mt-12">
