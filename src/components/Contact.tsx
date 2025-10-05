@@ -3,7 +3,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
-  const [state, handleSubmit] = useForm("YOUR_FORM_ID"); // Reemplaza con tu ID real
+  const [state, handleSubmit] = useForm("xldwojob"); // Reemplaza con tu ID real
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -129,7 +129,7 @@ const Contact: React.FC = () => {
               </div>
             )}
 
-            {state.errors && state.errors.length > 0 && (
+            {Array.isArray(state.errors) && state.errors.length > 0 && (
               <div className="mb-6 p-4 bg-red-900/50 border border-red-500 rounded-lg flex items-center">
                 <AlertCircle className="w-5 h-5 text-red-400 mr-3" />
                 <p className="text-red-400">Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.</p>
