@@ -3,6 +3,8 @@ import { Play } from 'lucide-react';
 import { imageUrls } from '../assets/images/imageUrls';
 
 const Gallery: React.FC = () => {
+  const [selectedVideo, setSelectedVideo] = React.useState<string | null>(null);
+
   const galleryItems = [
     {
       type: 'image',
@@ -12,16 +14,23 @@ const Gallery: React.FC = () => {
     },
     {
       type: 'video',
-      video: imageUrls.videos.workoutDemo,
+      video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       thumbnail: imageUrls.gallery.powerlifting,
-      title: "Demo de Entrenamiento",
-      description: "Mira cómo entrenan nuestros miembros"
+      title: "Entrenamiento de Fuerza",
+      description: "Mira técnicas avanzadas de powerlifting"
     },
     {
       type: 'image',
       image: imageUrls.gallery.powerlifting,
       title: "Área de Powerlifting",
       description: "Plataformas especializadas para levantamiento"
+    },
+    {
+      type: 'video',
+      video: 'https://www.youtube.com/embed/ScMzIvxBSi4',
+      thumbnail: imageUrls.gallery.cardio,
+      title: "Rutina de Cardio HIIT",
+      description: "Sesión completa de cardio de alta intensidad"
     },
     {
       type: 'image',
@@ -31,16 +40,23 @@ const Gallery: React.FC = () => {
     },
     {
       type: 'video',
-      video: imageUrls.videos.classPreview,
+      video: 'https://www.youtube.com/embed/IODxDxX7oi4',
       thumbnail: imageUrls.gallery.spinning,
-      title: "Clases en Vivo",
-      description: "Experimenta nuestras clases grupales"
+      title: "Clase de Spinning",
+      description: "Experimenta nuestras clases de spinning en vivo"
     },
     {
       type: 'image',
       image: imageUrls.gallery.crossfit,
       title: "Área de CrossFit",
       description: "Espacio amplio para entrenamientos funcionales"
+    },
+    {
+      type: 'video',
+      video: 'https://www.youtube.com/embed/R2_Mn-qRKjA',
+      thumbnail: imageUrls.gallery.stretching,
+      title: "Rutina de Estiramiento",
+      description: "Técnicas de recuperación y flexibilidad"
     },
     {
       type: 'image',
@@ -50,20 +66,25 @@ const Gallery: React.FC = () => {
     },
     {
       type: 'video',
-      video: imageUrls.videos.facilityTour,
-      thumbnail: imageUrls.gallery.stretching,
-      title: "Tour Virtual",
-      description: "Recorre nuestras instalaciones completas"
+      video: 'https://www.youtube.com/embed/UBMk30rjy0o',
+      thumbnail: imageUrls.gallery.crossfit,
+      title: "CrossFit WOD",
+      description: "Workout of the Day - Entrenamiento funcional"
     },
     {
       type: 'image',
       image: imageUrls.gallery.stretching,
       title: "Zona de Estiramiento",
       description: "Área dedicada para calentamiento y recuperación"
+    },
+    {
+      type: 'video',
+      video: 'https://www.youtube.com/embed/ml6cT4AZdqI',
+      thumbnail: imageUrls.gallery.weights,
+      title: "Tour Virtual del Gimnasio",
+      description: "Recorre todas nuestras instalaciones"
     }
   ];
-
-  const [selectedVideo, setSelectedVideo] = React.useState<string | null>(null);
 
   return (
     <section id="galeria" className="py-20 bg-gray-900">
@@ -75,8 +96,8 @@ const Gallery: React.FC = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Descubre nuestras instalaciones de clase mundial, diseñadas para 
-            brindarte la mejor experiencia de entrenamiento.
+            Descubre nuestras instalaciones de clase mundial y mira videos de entrenamientos reales. 
+            Equipos de última generación para tu mejor experiencia fitness.
           </p>
         </div>
 
@@ -84,31 +105,29 @@ const Gallery: React.FC = () => {
           {galleryItems.map((item, index) => (
             <div
               key={index}
-              className="relative group overflow-hidden rounded-xl bg-black/50 backdrop-blur-sm border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300"
+              className="relative group overflow-hidden rounded-xl bg-black/50 backdrop-blur-sm border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300 cursor-pointer"
               onClick={() => item.type === 'video' && setSelectedVideo(item.video)}
             >
               <div className="relative overflow-hidden">
                 <img
                   src={item.type === 'video' ? item.thumbnail : item.image}
                   alt={item.title}
-                  className={`w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 ${
-                    item.type === 'video' ? 'cursor-pointer' : ''
-                  }`}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
                 
                 {/* Video Play Button */}
                 {item.type === 'video' && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-yellow-400 rounded-full p-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="bg-yellow-400 rounded-full p-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                       <Play className="w-8 h-8 text-black fill-current" />
                     </div>
                   </div>
                 )}
                 
-                {/* Premium Badge */}
+                {/* Type Badge */}
                 <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-xs font-bold px-3 py-1 rounded-full">
-                  {item.type === 'video' ? 'VIDEO' : 'ZONA PREMIUM'}
+                  {item.type === 'video' ? '🎥 VIDEO' : '📸 FOTO'}
                 </div>
               </div>
               
@@ -122,9 +141,9 @@ const Gallery: React.FC = () => {
               </div>
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-2 rounded-lg font-medium transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                  {item.type === 'video' ? 'Reproducir Video' : 'Ver Detalles'}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20">
+                <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-2 rounded-lg font-medium transform scale-90 group-hover:scale-100 transition-transform duration-300 shadow-lg">
+                  {item.type === 'video' ? '▶️ Ver Video' : '👁️ Ver Imagen'}
                 </button>
               </div>
             </div>
@@ -133,21 +152,22 @@ const Gallery: React.FC = () => {
 
         {/* Video Modal */}
         {selectedVideo && (
-          <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-4">
             <div className="relative max-w-4xl w-full">
               <button
                 onClick={() => setSelectedVideo(null)}
-                className="absolute -top-12 right-0 text-white hover:text-yellow-400 text-2xl font-bold"
+                className="absolute -top-12 right-0 text-white hover:text-yellow-400 text-3xl font-bold z-10"
               >
                 ✕
               </button>
-              <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg">
+              <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg bg-black">
                 <iframe
                   src={selectedVideo}
                   className="absolute top-0 left-0 w-full h-full"
                   frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  title="Video del gimnasio"
                 ></iframe>
               </div>
             </div>
@@ -156,8 +176,9 @@ const Gallery: React.FC = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-12">
+          <p className="text-gray-300 mb-6">¿Te gustó lo que viste? ¡Ven y experimenta GoldFit en persona!</p>
           <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-4 rounded-lg font-bold text-lg hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-yellow-500/25">
-            AGENDA TU TOUR GRATUITO
+            🏃‍♂️ AGENDA TU TOUR GRATUITO
           </button>
         </div>
       </div>
