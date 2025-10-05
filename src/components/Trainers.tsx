@@ -3,6 +3,12 @@ import { Award, Star, Calendar, Instagram, Facebook } from 'lucide-react';
 import { imageUrls } from '../assets/images/imageUrls';
 
 const Trainers: React.FC = () => {
+  const TikTokIcon = () => (
+    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+    </svg>
+  );
+
   const trainers = [
     {
       name: "Carlos Mendoza",
@@ -62,12 +68,6 @@ const Trainers: React.FC = () => {
     }
   ];
 
-  const TikTokIcon = () => (
-    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-    </svg>
-  );
-
   return (
     <section id="entrenadores" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,39 +93,44 @@ const Trainers: React.FC = () => {
                 <img
                   src={trainer.image}
                   alt={trainer.name}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                
+                {/* Rating Badge */}
                 <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1 flex items-center space-x-1">
                   <Star className="w-4 h-4 text-yellow-400 fill-current" />
                   <span className="text-white text-sm font-medium">{trainer.rating}</span>
                 </div>
                 
-                {/* Social Media Overlay */}
-                <div className="absolute inset-0 bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                {/* Social Media Overlay - Aparece en hover */}
+                <div className="absolute inset-0 bg-black/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <div className="text-center">
-                    <p className="text-white text-sm mb-4 font-medium">Sígueme en:</p>
+                    <p className="text-white text-sm mb-6 font-medium">Sígueme en mis redes:</p>
                     <div className="flex space-x-4 justify-center">
                       <a
                         href={trainer.socialMedia.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-gradient-to-r from-pink-500 to-purple-600 p-3 rounded-full text-white hover:scale-110 transition-transform duration-300"
+                        className="bg-gradient-to-r from-pink-500 to-purple-600 p-3 rounded-full text-white hover:scale-110 transition-transform duration-300 shadow-lg"
+                        title="Instagram"
                       >
-                        <Instagram className="w-5 h-5" />
+                        <Instagram className="w-6 h-6" />
                       </a>
                       <a
                         href={trainer.socialMedia.facebook}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-blue-600 p-3 rounded-full text-white hover:scale-110 transition-transform duration-300"
+                        className="bg-blue-600 p-3 rounded-full text-white hover:scale-110 transition-transform duration-300 shadow-lg"
+                        title="Facebook"
                       >
-                        <Facebook className="w-5 h-5" />
+                        <Facebook className="w-6 h-6" />
                       </a>
                       <a
                         href={trainer.socialMedia.tiktok}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-black p-3 rounded-full text-white hover:scale-110 transition-transform duration-300"
+                        className="bg-black p-3 rounded-full text-white hover:scale-110 transition-transform duration-300 shadow-lg border-2 border-white"
+                        title="TikTok"
                       >
                         <TikTokIcon />
                       </a>
