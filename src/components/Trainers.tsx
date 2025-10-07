@@ -155,6 +155,34 @@ const Trainers: React.FC = () => {
                 <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-2 rounded-lg font-medium hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300">
                   Agendar Sesión
                 </button>
+
+                {/* Redes Sociales */}
+                <div className="mt-4 pt-4 border-t border-gray-700">
+                  <p className="text-gray-400 text-sm mb-3 text-center">Sígueme en:</p>
+                  <div className="flex justify-center space-x-4">
+                    <a 
+                      href={trainer.social.instagram} 
+                      className="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
+                      title="Instagram"
+                    >
+                      <Instagram className="h-5 w-5 text-white" />
+                    </a>
+                    <a 
+                      href={trainer.social.facebook} 
+                      className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
+                      title="Facebook"
+                    >
+                      <Facebook className="h-5 w-5 text-white" />
+                    </a>
+                    <a 
+                      href={trainer.social.tiktok} 
+                      className="w-10 h-10 bg-black border-2 border-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
+                      title="TikTok"
+                    >
+                      <Music className="h-5 w-5 text-white" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
