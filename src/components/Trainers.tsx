@@ -1,14 +1,8 @@
 import React from 'react';
-import { Award, Star, Calendar, Instagram, Facebook } from 'lucide-react';
+import { Award, Star, Calendar, Instagram, Facebook, Music } from 'lucide-react';
 import { imageUrls } from '../assets/images/imageUrls';
 
 const Trainers: React.FC = () => {
-  const TikTokIcon = () => (
-    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-    </svg>
-  );
-
   const trainers = [
     {
       name: "Carlos Mendoza",
@@ -17,11 +11,11 @@ const Trainers: React.FC = () => {
       certifications: ["NSCA-CPT", "ACSM", "Powerlifting Coach"],
       image: imageUrls.trainers.carlos,
       rating: 5,
-      description: "Especialista en desarrollo muscular y técnicas de powerlifting avanzadas.",
-      socialMedia: {
-        instagram: "https://instagram.com/carlosmendoza_fit",
-        facebook: "https://facebook.com/carlosmendoza.trainer",
-        tiktok: "https://tiktok.com/@carlosmendoza_fit"
+      bio: "Más de 8 años desarrollando programas de entrenamiento de fuerza para atletas de alto rendimiento.",
+      social: {
+        instagram: "#",
+        facebook: "#",
+        tiktok: "#"
       }
     },
     {
@@ -31,11 +25,11 @@ const Trainers: React.FC = () => {
       certifications: ["NASM-CPT", "TRX Instructor", "Yoga Alliance"],
       image: imageUrls.trainers.ana,
       rating: 5,
-      description: "Experta en entrenamiento funcional y bienestar integral.",
-      socialMedia: {
-        instagram: "https://instagram.com/ana_garcia_fit",
-        facebook: "https://facebook.com/ana.garcia.trainer",
-        tiktok: "https://tiktok.com/@ana_garcia_fit"
+      bio: "Especialista en entrenamiento funcional y bienestar integral con enfoque holístico.",
+      social: {
+        instagram: "#",
+        facebook: "#",
+        tiktok: "#"
       }
     },
     {
@@ -45,11 +39,11 @@ const Trainers: React.FC = () => {
       certifications: ["CrossFit Level 3", "HIIT Specialist", "Olympic Lifting"],
       image: imageUrls.trainers.miguel,
       rating: 5,
-      description: "Campeón regional de CrossFit con experiencia en entrenamiento de alto rendimiento.",
-      socialMedia: {
-        instagram: "https://instagram.com/miguel_torres_crossfit",
-        facebook: "https://facebook.com/miguel.torres.crossfit",
-        tiktok: "https://tiktok.com/@miguel_torres_crossfit"
+      bio: "Campeón regional de CrossFit con más de 10 años formando atletas de élite.",
+      social: {
+        instagram: "#",
+        facebook: "#",
+        tiktok: "#"
       }
     },
     {
@@ -59,11 +53,11 @@ const Trainers: React.FC = () => {
       certifications: ["Nutricionista Deportiva", "ISSN", "Metabolic Specialist"],
       image: imageUrls.trainers.laura,
       rating: 5,
-      description: "Especialista en planes nutricionales personalizados para atletas.",
-      socialMedia: {
-        instagram: "https://instagram.com/laura_martinez_nutrition",
-        facebook: "https://facebook.com/laura.martinez.nutrition",
-        tiktok: "https://tiktok.com/@laura_martinez_nutrition"
+      bio: "Nutricionista deportiva especializada en optimización del rendimiento atlético.",
+      social: {
+        instagram: "#",
+        facebook: "#",
+        tiktok: "#"
       }
     }
   ];
@@ -87,54 +81,35 @@ const Trainers: React.FC = () => {
           {trainers.map((trainer, index) => (
             <div
               key={index}
-              className="bg-gray-900/50 backdrop-blur-sm border border-yellow-500/20 rounded-xl overflow-hidden hover:border-yellow-500/50 hover:shadow-lg hover:shadow-yellow-500/10 transition-all duration-300 group"
+              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300"
             >
               <div className="relative overflow-hidden">
                 <img
                   src={trainer.image}
                   alt={trainer.name}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110"
                 />
-                
-                {/* Rating Badge */}
-                <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1 flex items-center space-x-1">
-                  <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                  <span className="text-white text-sm font-medium">{trainer.rating}</span>
-                </div>
-                
-                {/* Social Media Overlay */}
-                <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6">
-                  <div className="text-center">
-                    <p className="text-white text-sm mb-6 font-medium leading-relaxed max-w-48">
-                      Más de {trainer.experience} desarrollando soluciones de entrenamiento escalables para atletas de alto rendimiento.
-                    </p>
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-80 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="text-center transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-white text-sm mb-4 px-4">{trainer.bio}</p>
                     <div className="flex space-x-4 justify-center">
-                      <a
-                        href={trainer.socialMedia.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white p-3 rounded-full text-pink-500 hover:scale-110 transition-transform duration-200 shadow-lg"
-                        title="Instagram"
+                      <a 
+                        href={trainer.social.instagram} 
+                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
                       >
-                        <Instagram className="w-6 h-6" />
+                        <Instagram className="h-5 w-5 text-pink-500" />
                       </a>
-                      <a
-                        href={trainer.socialMedia.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white p-3 rounded-full text-blue-600 hover:scale-110 transition-transform duration-200 shadow-lg"
-                        title="Facebook"
+                      <a 
+                        href={trainer.social.facebook} 
+                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
                       >
-                        <Facebook className="w-6 h-6" />
+                        <Facebook className="h-5 w-5 text-blue-600" />
                       </a>
-                      <a
-                        href={trainer.socialMedia.tiktok}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white p-3 rounded-full text-black hover:scale-110 transition-transform duration-200 shadow-lg"
-                        title="TikTok"
+                      <a 
+                        href={trainer.social.tiktok} 
+                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
                       >
-                        <TikTokIcon />
+                        <Music className="h-5 w-5 text-black" />
                       </a>
                     </div>
                   </div>
@@ -142,11 +117,18 @@ const Trainers: React.FC = () => {
               </div>
               
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300">
-                  {trainer.name}
-                </h3>
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-xl font-bold text-white">
+                    {trainer.name}
+                  </h3>
+                  <div className="flex items-center space-x-1">
+                    {[...Array(trainer.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </div>
                 <p className="text-yellow-400 font-medium mb-2">{trainer.specialty}</p>
-                <p className="text-gray-300 text-sm mb-4">{trainer.description}</p>
+                <p className="text-gray-300 text-sm mb-4">Especialista en {trainer.specialty.toLowerCase()}</p>
                 
                 <div className="flex items-center text-gray-400 text-sm mb-4">
                   <Calendar className="w-4 h-4 mr-2" />
