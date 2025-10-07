@@ -11,12 +11,7 @@ const Trainers: React.FC = () => {
       certifications: ["NSCA-CPT", "ACSM", "Powerlifting Coach"],
       image: imageUrls.trainers.carlos,
       rating: 5,
-      bio: "Más de 8 años desarrollando programas de entrenamiento de fuerza para atletas de alto rendimiento.",
-      social: {
-        instagram: "#",
-        facebook: "#",
-        tiktok: "#"
-      }
+      bio: "Más de 8 años desarrollando programas de entrenamiento de fuerza para atletas de alto rendimiento."
     },
     {
       name: "Ana García",
@@ -25,12 +20,7 @@ const Trainers: React.FC = () => {
       certifications: ["NASM-CPT", "TRX Instructor", "Yoga Alliance"],
       image: imageUrls.trainers.ana,
       rating: 5,
-      bio: "Especialista en entrenamiento funcional y bienestar integral con enfoque holístico.",
-      social: {
-        instagram: "#",
-        facebook: "#",
-        tiktok: "#"
-      }
+      bio: "Especialista en entrenamiento funcional y bienestar integral con enfoque holístico."
     },
     {
       name: "Miguel Torres",
@@ -39,12 +29,7 @@ const Trainers: React.FC = () => {
       certifications: ["CrossFit Level 3", "HIIT Specialist", "Olympic Lifting"],
       image: imageUrls.trainers.miguel,
       rating: 5,
-      bio: "Campeón regional de CrossFit con más de 10 años formando atletas de élite.",
-      social: {
-        instagram: "#",
-        facebook: "#",
-        tiktok: "#"
-      }
+      bio: "Campeón regional de CrossFit con más de 10 años formando atletas de élite."
     },
     {
       name: "Laura Martínez",
@@ -53,12 +38,7 @@ const Trainers: React.FC = () => {
       certifications: ["Nutricionista Deportiva", "ISSN", "Metabolic Specialist"],
       image: imageUrls.trainers.laura,
       rating: 5,
-      bio: "Nutricionista deportiva especializada en optimización del rendimiento atlético.",
-      social: {
-        instagram: "#",
-        facebook: "#",
-        tiktok: "#"
-      }
+      bio: "Nutricionista deportiva especializada en optimización del rendimiento atlético."
     }
   ];
 
@@ -81,42 +61,20 @@ const Trainers: React.FC = () => {
           {trainers.map((trainer, index) => (
             <div
               key={index}
-              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300"
+              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
             >
+              {/* Imagen */}
               <div className="relative overflow-hidden">
                 <img
                   src={trainer.image}
                   alt={trainer.name}
-                  className="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-64 object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-80 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-center transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-white text-sm mb-4 px-4">{trainer.bio}</p>
-                    <div className="flex space-x-4 justify-center">
-                      <a 
-                        href={trainer.social.instagram} 
-                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
-                      >
-                        <Instagram className="h-5 w-5 text-pink-500" />
-                      </a>
-                      <a 
-                        href={trainer.social.facebook} 
-                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
-                      >
-                        <Facebook className="h-5 w-5 text-blue-600" />
-                      </a>
-                      <a 
-                        href={trainer.social.tiktok} 
-                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
-                      >
-                        <Music className="h-5 w-5 text-black" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
               </div>
               
+              {/* Contenido */}
               <div className="p-6">
+                {/* Header con nombre y rating */}
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-xl font-bold text-white">
                     {trainer.name}
@@ -127,14 +85,17 @@ const Trainers: React.FC = () => {
                     ))}
                   </div>
                 </div>
+
+                {/* Especialidad */}
                 <p className="text-yellow-400 font-medium mb-2">{trainer.specialty}</p>
-                <p className="text-gray-300 text-sm mb-4">Especialista en {trainer.specialty.toLowerCase()}</p>
                 
+                {/* Experiencia */}
                 <div className="flex items-center text-gray-400 text-sm mb-4">
                   <Calendar className="w-4 h-4 mr-2" />
                   {trainer.experience} de experiencia
                 </div>
 
+                {/* Certificaciones */}
                 <div className="mb-4">
                   <div className="flex items-center mb-2">
                     <Award className="w-4 h-4 text-yellow-400 mr-2" />
@@ -152,30 +113,36 @@ const Trainers: React.FC = () => {
                   </div>
                 </div>
 
-                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-2 rounded-lg font-medium hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300">
+                {/* Botón de agendar */}
+                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-2 rounded-lg font-medium hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 mb-4">
                   Agendar Sesión
                 </button>
 
-                {/* Redes Sociales */}
-                <div className="mt-4 pt-4 border-t border-gray-700">
+                {/* REDES SOCIALES */}
+                <div className="pt-4 border-t border-gray-700">
                   <p className="text-gray-400 text-sm mb-3 text-center">Sígueme en:</p>
                   <div className="flex justify-center space-x-4">
+                    {/* Instagram */}
                     <a 
-                      href={trainer.social.instagram} 
+                      href="#" 
                       className="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
                       title="Instagram"
                     >
                       <Instagram className="h-5 w-5 text-white" />
                     </a>
+                    
+                    {/* Facebook */}
                     <a 
-                      href={trainer.social.facebook} 
+                      href="#" 
                       className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
                       title="Facebook"
                     >
                       <Facebook className="h-5 w-5 text-white" />
                     </a>
+                    
+                    {/* TikTok */}
                     <a 
-                      href={trainer.social.tiktok} 
+                      href="#" 
                       className="w-10 h-10 bg-black border-2 border-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
                       title="TikTok"
                     >
