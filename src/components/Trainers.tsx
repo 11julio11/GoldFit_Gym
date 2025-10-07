@@ -10,8 +10,10 @@ const Trainers: React.FC = () => {
       experience: "8 años",
       certifications: ["NSCA-CPT", "ACSM", "Powerlifting Coach"],
       image: imageUrls.trainers.carlos,
+      hoverImage: imageUrls.trainers.carlos,
       rating: 5,
-      bio: "Más de 8 años desarrollando programas de entrenamiento de fuerza para atletas de alto rendimiento."
+      bio: "Más de 8 años desarrollando programas de entrenamiento de fuerza para atletas de alto rendimiento.",
+      socialMedia: { instagram: '#', facebook: '#', tiktok: '#' }
     },
     {
       name: "Ana García",
@@ -19,8 +21,10 @@ const Trainers: React.FC = () => {
       experience: "6 años",
       certifications: ["NASM-CPT", "TRX Instructor", "Yoga Alliance"],
       image: imageUrls.trainers.ana,
+      hoverImage: imageUrls.trainers.ana,
       rating: 5,
-      bio: "Especialista en entrenamiento funcional y bienestar integral con enfoque holístico."
+      bio: "Especialista en entrenamiento funcional y bienestar integral con enfoque holístico.",
+      socialMedia: { instagram: '#', facebook: '#', tiktok: '#' }
     },
     {
       name: "Miguel Torres",
@@ -28,8 +32,10 @@ const Trainers: React.FC = () => {
       experience: "10 años",
       certifications: ["CrossFit Level 3", "HIIT Specialist", "Olympic Lifting"],
       image: imageUrls.trainers.miguel,
+      hoverImage: imageUrls.trainers.miguel,
       rating: 5,
-      bio: "Campeón regional de CrossFit con más de 10 años formando atletas de élite."
+      bio: "Campeón regional de CrossFit con más de 10 años formando atletas de élite.",
+      socialMedia: { instagram: '#', facebook: '#', tiktok: '#' }
     },
     {
       name: "Laura Martínez",
@@ -37,8 +43,10 @@ const Trainers: React.FC = () => {
       experience: "7 años",
       certifications: ["Nutricionista Deportiva", "ISSN", "Metabolic Specialist"],
       image: imageUrls.trainers.laura,
+      hoverImage: imageUrls.trainers.laura,
       rating: 5,
-      bio: "Nutricionista deportiva especializada en optimización del rendimiento atlético."
+      bio: "Nutricionista deportiva especializada en optimización del rendimiento atlético.",
+      socialMedia: { instagram: '#', facebook: '#', tiktok: '#' }
     }
   ];
 
@@ -61,15 +69,62 @@ const Trainers: React.FC = () => {
           {trainers.map((trainer, index) => (
             <div
               key={index}
-              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
             >
-              {/* Imagen */}
+              {/* Imagen con overlay hover */}
               <div className="relative overflow-hidden">
                 <img
                   src={trainer.image}
                   alt={trainer.name}
-                  className="w-full h-64 object-cover object-center"
+                  className="w-full h-64 object-cover object-center transition-transform duration-700 group-hover:scale-105 z-0"
                 />
+
+                <img
+                  src={trainer.hoverImage ?? trainer.image}
+                  alt={`${trainer.name} detalle`}
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover opacity-0 transform scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 z-10"
+                />
+
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/60 transition-colors duration-300 z-20"></div>
+
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-30">
+                  <div className="pointer-events-auto text-center px-4">
+                    <p className="text-white text-sm mb-4">{trainer.bio}</p>
+                    <div className="flex space-x-3 justify-center">
+                      <a
+                        href={trainer.socialMedia.instagram}
+                        target="_blank"
+                        rel="noreferrer"
+                        title={`Instagram de ${trainer.name}`}
+                        aria-label={`Instagram de ${trainer.name}`}
+                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-yellow-400 transition-colors"
+                      >
+                        <Instagram className="w-5 h-5 text-black" />
+                      </a>
+                      <a
+                        href={trainer.socialMedia.facebook}
+                        target="_blank"
+                        rel="noreferrer"
+                        title={`Facebook de ${trainer.name}`}
+                        aria-label={`Facebook de ${trainer.name}`}
+                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-yellow-400 transition-colors"
+                      >
+                        <Facebook className="w-5 h-5 text-black" />
+                      </a>
+                      <a
+                        href={trainer.socialMedia.tiktok}
+                        target="_blank"
+                        rel="noreferrer"
+                        title={`TikTok de ${trainer.name}`}
+                        aria-label={`TikTok de ${trainer.name}`}
+                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-yellow-400 transition-colors"
+                      >
+                        <Music className="w-5 h-5 text-black" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
               
               {/* Contenido */}
