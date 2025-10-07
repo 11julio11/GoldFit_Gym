@@ -7,13 +7,14 @@ const Gallery: React.FC = () => {
 
   const galleryItems = [
     {
+      type: 'image',
       image: imageUrls.gallery.weights,
       title: "Zona de Pesas Libres",
       description: "Área completa con mancuernas y barras olímpicas"
     },
     {
       type: 'video',
-      video: imageUrls.videos.workoutDemo,
+      video: 'https://www.youtube.com/embed/ScMzIvxBSi4',
       thumbnail: imageUrls.gallery.powerlifting,
       title: "Demo de Entrenamiento",
       description: "Mira cómo entrenan nuestros miembros"
@@ -26,20 +27,20 @@ const Gallery: React.FC = () => {
     },
     {
       type: 'video',
-      video: 'https://www.youtube.com/embed/ScMzIvxBSi4',
+      video: 'https://www.youtube.com/embed/R2_Mn-qRKjA',
       thumbnail: imageUrls.gallery.cardio,
       title: "Rutina de Cardio HIIT",
       description: "Sesión completa de cardio de alta intensidad"
     },
-      {
-        type: 'image',
-        image: imageUrls.gallery.cardio,
-        title: "Zona de Cardio Premium",
-        description: "Equipos de última generación con pantallas HD"
-      },
+    {
+      type: 'image',
+      image: imageUrls.gallery.cardio,
+      title: "Zona de Cardio Premium",
+      description: "Equipos de última generación con pantallas HD"
+    },
     {
       type: 'video',
-      video: imageUrls.videos.classPreview,
+      video: 'https://www.youtube.com/embed/76979871',
       thumbnail: imageUrls.gallery.spinning,
       title: "Clases en Vivo",
       description: "Experimenta nuestras clases grupales"
@@ -52,21 +53,21 @@ const Gallery: React.FC = () => {
     },
     {
       type: 'video',
-      video: 'https://www.youtube.com/embed/R2_Mn-qRKjA',
+      video: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       thumbnail: imageUrls.gallery.stretching,
       title: "Rutina de Estiramiento",
       description: "Técnicas de recuperación y flexibilidad"
     },
-      {
-        type: 'image',
-        image: imageUrls.gallery.spinning,
-        title: "Sala de Spinning",
-        description: "Bicicletas premium con sistema de sonido envolvente"
-      },
+    {
+      type: 'image',
+      image: imageUrls.gallery.spinning,
+      title: "Sala de Spinning",
+      description: "Bicicletas premium con sistema de sonido envolvente"
+    },
     {
       type: 'video',
-      video: imageUrls.videos.facilityTour,
-      thumbnail: imageUrls.gallery.stretching,
+      video: 'https://www.youtube.com/embed/BaW_jenozKc',
+      thumbnail: imageUrls.gallery.weights,
       title: "Tour Virtual",
       description: "Recorre nuestras instalaciones completas"
     },
@@ -75,10 +76,15 @@ const Gallery: React.FC = () => {
       image: imageUrls.gallery.stretching,
       title: "Zona de Estiramiento",
       description: "Área dedicada para calentamiento y recuperación"
+    },
+    {
+      type: 'video',
+      video: 'https://www.youtube.com/embed/kJQP7kiw5Fk',
+      thumbnail: imageUrls.gallery.crossfit,
+      title: "Entrenamiento Funcional",
+      description: "Ejercicios para mejorar tu rendimiento diario"
     }
   ];
-
-    // Eliminada duplicidad del estado
 
   return (
     <section id="galeria" className="py-20 bg-gray-900">
@@ -99,12 +105,12 @@ const Gallery: React.FC = () => {
           {galleryItems.map((item, index) => (
             <div
               key={index}
-              className="relative group overflow-hidden rounded-xl bg-black/50 backdrop-blur-sm border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300"
-              onClick={() => item.type === 'video' && item.video ? setSelectedVideo(item.video) : setSelectedVideo(null)}
+              className="relative group overflow-hidden rounded-xl bg-black/50 backdrop-blur-sm border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300 cursor-pointer"
+              onClick={() => item.type === 'video' && item.video ? setSelectedVideo(item.video) : null}
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={item.image}
+                  src={item.thumbnail || item.image}
                   alt={item.title}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
@@ -113,7 +119,7 @@ const Gallery: React.FC = () => {
                 {/* Video Play Button */}
                 {item.type === 'video' && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-yellow-400 rounded-full p-4 group-hover:scale-110 transition-transform duration-300">
+                    <div className="bg-yellow-400 rounded-full p-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                       <Play className="w-8 h-8 text-black fill-current" />
                     </div>
                   </div>
@@ -121,7 +127,7 @@ const Gallery: React.FC = () => {
                 
                 {/* Type Badge */}
                 <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-xs font-bold px-3 py-1 rounded-full">
-                  {item.type === 'video' ? 'VIDEO' : 'ZONA PREMIUM'}
+                  {item.type === 'video' ? '🎥 VIDEO' : '📸 FOTO'}
                 </div>
               </div>
               
