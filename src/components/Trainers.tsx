@@ -102,16 +102,20 @@ const Trainers: React.FC = () => {
                   <span className="text-white text-sm font-medium">{trainer.rating}</span>
                 </div>
                 
-                {/* Social Media Overlay - Aparece en hover */}
-                <div className="absolute inset-0 bg-black/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                {/* Social Media Overlay - Exactamente como en el ejemplo */}
+                <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 p-6">
                   <div className="text-center">
-                    <p className="text-white text-sm mb-6 font-medium">Sígueme en mis redes:</p>
+                    <p className="text-white text-sm mb-6 font-medium leading-relaxed">
+                      {trainer.experience} de experiencia en<br />
+                      {trainer.specialty.toLowerCase()} y entrenamiento<br />
+                      personalizado para resultados.
+                    </p>
                     <div className="flex space-x-4 justify-center">
                       <a
                         href={trainer.socialMedia.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-gradient-to-r from-pink-500 to-purple-600 p-3 rounded-full text-white hover:scale-110 transition-transform duration-300 shadow-lg"
+                        className="bg-white p-3 rounded-full text-pink-500 hover:scale-110 transition-transform duration-300 shadow-lg"
                         title="Instagram"
                       >
                         <Instagram className="w-6 h-6" />
@@ -120,7 +124,7 @@ const Trainers: React.FC = () => {
                         href={trainer.socialMedia.facebook}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-blue-600 p-3 rounded-full text-white hover:scale-110 transition-transform duration-300 shadow-lg"
+                        className="bg-white p-3 rounded-full text-blue-600 hover:scale-110 transition-transform duration-300 shadow-lg"
                         title="Facebook"
                       >
                         <Facebook className="w-6 h-6" />
@@ -129,7 +133,7 @@ const Trainers: React.FC = () => {
                         href={trainer.socialMedia.tiktok}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-black p-3 rounded-full text-white hover:scale-110 transition-transform duration-300 shadow-lg border-2 border-white"
+                        className="bg-white p-3 rounded-full text-black hover:scale-110 transition-transform duration-300 shadow-lg"
                         title="TikTok"
                       >
                         <TikTokIcon />
