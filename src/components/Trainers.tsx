@@ -111,12 +111,14 @@ const Trainers: React.FC = () => {
                 <img
                   src={trainer.image}
                   alt={trainer.name}
-                  className="w-full h-80 object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-80 object-cover object-center transition-transform duration-700 group-hover:scale-105 z-0"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+
+                {/* Overlay social eliminado: las redes estarán en la parte inferior de la tarjeta */}
+
                 {/* Ubicación */}
-                <div className="absolute bottom-4 left-4 flex items-center text-white text-sm">
+                <div className="absolute bottom-4 left-4 flex items-center text-white text-sm z-20">
                   <MapPin className="w-4 h-4 mr-1 text-yellow-400" />
                   {trainer.location}
                 </div>
@@ -194,37 +196,46 @@ const Trainers: React.FC = () => {
                   <p className="text-gray-400 text-sm mb-3 text-center font-medium">Sígueme en:</p>
                   <div className="flex justify-center space-x-4">
                     {/* Instagram */}
-                    <a 
-                      href={trainer.socialMedia.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
-                      title={`Instagram de ${trainer.name}`}
-                    >
-                      <Instagram className="h-6 w-6 text-white" />
-                    </a>
-                    
+                    {trainer.socialMedia?.instagram && (
+                      <a
+                        href={trainer.socialMedia.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
+                        title={`Instagram de ${trainer.name}`}
+                        aria-label={`Instagram de ${trainer.name}`}
+                      >
+                        <Instagram className="h-6 w-6 text-white" />
+                      </a>
+                    )}
+
                     {/* Facebook */}
-                    <a 
-                      href={trainer.socialMedia.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
-                      title={`Facebook de ${trainer.name}`}
-                    >
-                      <Facebook className="h-6 w-6 text-white" />
-                    </a>
-                    
+                    {trainer.socialMedia?.facebook && (
+                      <a
+                        href={trainer.socialMedia.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
+                        title={`Facebook de ${trainer.name}`}
+                        aria-label={`Facebook de ${trainer.name}`}
+                      >
+                        <Facebook className="h-6 w-6 text-white" />
+                      </a>
+                    )}
+
                     {/* TikTok */}
-                    <a 
-                      href={trainer.socialMedia.tiktok}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-12 h-12 bg-black border-2 border-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
-                      title={`TikTok de ${trainer.name}`}
-                    >
-                      <Music className="h-6 w-6 text-white" />
-                    </a>
+                    {trainer.socialMedia?.tiktok && (
+                      <a
+                        href={trainer.socialMedia.tiktok}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 bg-black border-2 border-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
+                        title={`TikTok de ${trainer.name}`}
+                        aria-label={`TikTok de ${trainer.name}`}
+                      >
+                        <Music className="h-6 w-6 text-white" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
