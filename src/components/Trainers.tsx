@@ -1,5 +1,6 @@
 import React from 'react';
-import { Award, Star, Calendar, Instagram, Facebook, Music, MapPin, Trophy, Target } from 'lucide-react';
+import { Award, Star, Calendar, MapPin, Trophy, Target } from 'lucide-react';
+import { FaInstagram, FaFacebook, FaTiktok } from 'react-icons/fa';
 import { imageUrls } from '../assets/images/imageUrls';
 
 const Trainers: React.FC = () => {
@@ -106,7 +107,7 @@ const Trainers: React.FC = () => {
                 </div>
               )}
 
-              {/* Imagen del entrenador */}
+              {/* Imagen */}
               <div className="relative overflow-hidden">
                 <img
                   src={trainer.image}
@@ -115,27 +116,20 @@ const Trainers: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
 
-                {/* Overlay social eliminado: las redes estarán en la parte inferior de la tarjeta */}
-
-                {/* Ubicación */}
                 <div className="absolute bottom-4 left-4 flex items-center text-white text-sm z-20">
                   <MapPin className="w-4 h-4 mr-1 text-yellow-400" />
                   {trainer.location}
                 </div>
               </div>
 
-              {/* Contenido de la tarjeta */}
+              {/* Contenido */}
               <div className="p-6">
-                {/* Nombre y nickname */}
                 <div className="text-center mb-4">
-                  <h3 className="text-xl font-bold text-white mb-1">
-                    {trainer.name}
-                  </h3>
+                  <h3 className="text-xl font-bold text-white mb-1">{trainer.name}</h3>
                   <p className="text-yellow-400 font-medium text-lg">"{trainer.nickname}"</p>
                   <p className="text-gray-300 text-sm">{trainer.specialty}</p>
                 </div>
 
-                {/* Rating y experiencia */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-1">
                     {[...Array(trainer.rating)].map((_, i) => (
@@ -148,12 +142,8 @@ const Trainers: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Bio */}
-                <p className="text-gray-300 text-sm mb-4 line-clamp-3">
-                  {trainer.bio}
-                </p>
+                <p className="text-gray-300 text-sm mb-4 line-clamp-3">{trainer.bio}</p>
 
-                {/* Logros destacados */}
                 <div className="mb-4">
                   <div className="flex items-center mb-2">
                     <Trophy className="w-4 h-4 text-yellow-400 mr-2" />
@@ -168,7 +158,6 @@ const Trainers: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Certificaciones */}
                 <div className="mb-6">
                   <div className="flex items-center mb-2">
                     <Award className="w-4 h-4 text-yellow-400 mr-2" />
@@ -186,12 +175,11 @@ const Trainers: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Botón de agendar */}
                 <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-3 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 mb-4">
                   Agendar Sesión
                 </button>
 
-                {/* REDES SOCIALES - SIEMPRE VISIBLES */}
+                {/* REDES SOCIALES */}
                 <div className="border-t border-gray-700 pt-4">
                   <p className="text-gray-400 text-sm mb-3 text-center font-medium">Sígueme en:</p>
                   <div className="flex justify-center space-x-4">
@@ -202,10 +190,8 @@ const Trainers: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
-                        title={`Instagram de ${trainer.name}`}
-                        aria-label={`Instagram de ${trainer.name}`}
                       >
-                        <Instagram className="h-6 w-6 text-white" />
+                        <FaInstagram className="h-6 w-6 text-white" />
                       </a>
                     )}
 
@@ -216,10 +202,8 @@ const Trainers: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
-                        title={`Facebook de ${trainer.name}`}
-                        aria-label={`Facebook de ${trainer.name}`}
                       >
-                        <Facebook className="h-6 w-6 text-white" />
+                        <FaFacebook className="h-6 w-6 text-white" />
                       </a>
                     )}
 
@@ -230,10 +214,8 @@ const Trainers: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 bg-black border-2 border-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
-                        title={`TikTok de ${trainer.name}`}
-                        aria-label={`TikTok de ${trainer.name}`}
                       >
-                        <Music className="h-6 w-6 text-white" />
+                        <FaTiktok className="h-6 w-6 text-white" />
                       </a>
                     )}
                   </div>
@@ -243,7 +225,7 @@ const Trainers: React.FC = () => {
           ))}
         </div>
 
-        {/* Call to Action */}
+        {/* CTA */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-8 border border-yellow-500/20">
             <h3 className="text-2xl font-bold text-white mb-4">
