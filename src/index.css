@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	:root {
+		/* Colores de marca (puedes ajustar) */
+		--brand-yellow: #f6c02d;
+		--brand-yellow-dark: #d69e2e;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		@apply bg-black text-white antialiased;
+		/* Fuente por defecto: usa la que Tailwind/HTML proporcione (sistema) */
+	}
+
+	/* Mejora el foco visible para enlaces y botones (accesibilidad) */
+	a:focus-visible,
+	button:focus-visible {
+		@apply outline-none ring-2 ring-yellow-400;
+	}
+
+	img {
+		@apply block max-w-full h-auto;
+	}
+}
