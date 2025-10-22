@@ -3,7 +3,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
 
 const Contact: React.FC = () => {
-  const [state, handleSubmit] = useForm("xldwojob"); // Reemplaza con tu ID real
+  const [state, handleSubmit] = useForm("xldpkdjz");
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -172,7 +172,7 @@ const Contact: React.FC = () => {
                     required
                     disabled={state.submitting}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors disabled:opacity-50"
-                    placeholder="tu@email.com"
+                    placeholder="#"
                   />
                   <ValidationError 
                     prefix="Email" 

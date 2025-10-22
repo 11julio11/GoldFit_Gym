@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import WhatsAppButton from './components/WhatsAppButton';
+
 import { 
   Menu, 
   X, 
@@ -214,7 +216,6 @@ function App() {
             {[
               {
                 title: 'Entrenamiento Personal VIP',
-                description: 'Sesiones exclusivas con campeones certificados',
                 image: 'https://images.pexels.com/photos/3289711/pexels-photo-3289711.jpeg?auto=compress&cs=tinysrgb&w=800',
                 icon: <Users className="h-8 w-8 text-yellow-500" />,
                 features: ['Plan personalizado', 'Seguimiento 24/7', 'Nutrición incluida']
@@ -1008,6 +1009,8 @@ function App() {
           </div>
         </div>
       </footer>
+
+      <WhatsAppButton />
     </div>
   );
 }

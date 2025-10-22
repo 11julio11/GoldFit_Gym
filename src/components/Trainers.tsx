@@ -178,47 +178,40 @@ const Trainers: React.FC = () => {
                 <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-3 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 mb-4">
                   Agendar Sesión
                 </button>
-
-                {/* REDES SOCIALES */}
-                <div className="border-t border-gray-700 pt-4">
-                  <p className="text-gray-400 text-sm mb-3 text-center font-medium">Sígueme en:</p>
-                  <div className="flex justify-center space-x-4">
-                    {/* Instagram */}
-                    {trainer.socialMedia?.instagram && (
-                      <a
-                        href={trainer.socialMedia.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
-                      >
-                        <FaInstagram className="h-6 w-6 text-white" />
-                      </a>
-                    )}
-
-                    {/* Facebook */}
-                    {trainer.socialMedia?.facebook && (
-                      <a
-                        href={trainer.socialMedia.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
-                      >
-                        <FaFacebook className="h-6 w-6 text-white" />
-                      </a>
-                    )}
-
-                    {/* TikTok */}
-                    {trainer.socialMedia?.tiktok && (
-                      <a
-                        href={trainer.socialMedia.tiktok}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 bg-black border-2 border-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg"
-                      >
-                        <FaTiktok className="h-6 w-6 text-white" />
-                      </a>
-                    )}
-                  </div>
+                <div className="flex justify-center space-x-4 mt-4">
+                  {trainer.socialMedia?.instagram && (
+                    <a
+                      href={trainer.socialMedia.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors duration-300"
+                      aria-label={`Instagram de ${trainer.name}`}
+                    >
+                      <FaInstagram className="h-5 w-5" />
+                    </a>
+                  )}
+                  {trainer.socialMedia?.facebook && (
+                    <a
+                      href={trainer.socialMedia.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                      aria-label={`Facebook de ${trainer.name}`}
+                    >
+                      <FaFacebook className="h-5 w-5" />
+                    </a>
+                  )}
+                  {trainer.socialMedia?.tiktok && (
+                    <a
+                      href={trainer.socialMedia.tiktok}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-300"
+                      aria-label={`TikTok de ${trainer.name}`}
+                    >
+                      <FaTiktok className="h-5 w-5" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
