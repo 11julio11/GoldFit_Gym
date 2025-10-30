@@ -1,15 +1,12 @@
 import { useState, useEffect } from 'react';
-import WhatsAppButton from './components/WhatsAppButton';
+import FloatingContactButton from './components/FloatingContactButton';
+import Contact from './components/Contact';
 
 import { 
   Menu, 
   X, 
   Dumbbell, 
   Users, 
-  Clock, 
-  MapPin, 
-  Phone, 
-  Mail,
   Star,
   CheckCircle,
   ArrowRight,
@@ -22,11 +19,7 @@ import {
   TrendingUp,
   PlayCircle,
   Download,
-  MessageCircle,
-  Instagram,
-  Facebook,
-  Twitter
-} from 'lucide-react';
+  MessageCircle} from 'lucide-react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -860,123 +853,8 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contacto" className="py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Phone className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Únete a la <span className="text-yellow-500">Elite</span>
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              ¿Listo para comenzar tu transformación? Contáctanos y da el primer paso hacia la grandeza
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-yellow-400">Información de Contacto</h3>
-              
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4 bg-gray-900/50 p-4 rounded-lg border border-yellow-500/20">
-                  <MapPin className="h-6 w-6 text-yellow-500" />
-                  <div>
-                    <h4 className="font-bold text-yellow-400">Ubicación Elite</h4>
-                    <p className="text-gray-400">Av. Champions 123, Distrito Dorado</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4 bg-gray-900/50 p-4 rounded-lg border border-yellow-500/20">
-                  <Phone className="h-6 w-6 text-yellow-500" />
-                  <div>
-                    <h4 className="font-bold text-yellow-400">Línea Directa</h4>
-                    <p className="text-gray-400">+1 (555) GOLD-FIT</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4 bg-gray-900/50 p-4 rounded-lg border border-yellow-500/20">
-                  <Mail className="h-6 w-6 text-yellow-500" />
-                  <div>
-                    <h4 className="font-bold text-yellow-400">Email Elite</h4>
-                    <p className="text-gray-400">elite@goldfitgym.com</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4 bg-gray-900/50 p-4 rounded-lg border border-yellow-500/20">
-                  <Clock className="h-6 w-6 text-yellow-500" />
-                  <div>
-                    <h4 className="font-bold text-yellow-400">Horarios de Gloria</h4>
-                    <div className="text-gray-400">
-                      <p>Lun - Vie: 5:00 AM - 12:00 AM</p>
-                      <p>Sáb - Dom: 24 HORAS</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8">
-                <h4 className="font-bold text-yellow-400 mb-4">Síguenos en Redes</h4>
-                <div className="flex space-x-4">
-                  <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black p-3 rounded-full hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300">
-                    <Instagram className="h-5 w-5" />
-                  </button>
-                  <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black p-3 rounded-full hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300">
-                    <Facebook className="h-5 w-5" />
-                  </button>
-                  <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black p-3 rounded-full hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300">
-                    <Twitter className="h-5 w-5" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-yellow-400">Comienza Tu Transformación</h3>
-              
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="Nombre"
-                    className="bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white placeholder-gray-400"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white placeholder-gray-400"
-                  />
-                </div>
-                
-                <input
-                  type="tel"
-                  placeholder="Teléfono"
-                  className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white placeholder-gray-400"
-                />
-
-                <select className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 text-white">
-                  <option value="">Selecciona tu objetivo</option>
-                  <option value="perdida-peso">Pérdida de peso</option>
-                  <option value="ganancia-muscular">Ganancia muscular</option>
-                  <option value="rendimiento">Rendimiento deportivo</option>
-                  <option value="bienestar">Bienestar general</option>
-                </select>
-                
-                <textarea
-                  placeholder="Cuéntanos sobre tus objetivos y experiencia previa..."
-                  rows={5}
-                  className="w-full bg-gray-900 border border-yellow-500/30 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all duration-200 resize-none text-white placeholder-gray-400"
-                ></textarea>
-                
-                <button 
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black py-4 rounded-lg font-bold text-lg transition-all duration-300 shadow-lg shadow-yellow-500/25 flex items-center justify-center gap-2"
-                >
-                  <Zap className="h-5 w-5" />
-                  COMENZAR MI TRANSFORMACIÓN
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
+      <section id="contacto">
+        <Contact />
       </section>
 
       {/* Footer */}
@@ -1010,7 +888,7 @@ function App() {
         </div>
       </footer>
 
-      <WhatsAppButton />
+  <FloatingContactButton />
     </div>
   );
 }

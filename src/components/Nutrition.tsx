@@ -1,6 +1,5 @@
 import React from 'react';
 import { Apple, Target, TrendingUp, Award, Clock, Users } from 'lucide-react';
-import { imageUrls } from '../assets/images/imageUrls';
 const Nutrition: React.FC = () => {
   const nutritionPlans = [
     {
@@ -128,7 +127,13 @@ const Nutrition: React.FC = () => {
             Agenda una consulta gratuita con nuestros nutricionistas y descubre 
             el plan perfecto para tus objetivos.
           </p>
-          <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-4 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300">
+          <button
+            className="mt-8 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-4 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
+            onClick={() => {
+              const el = document.getElementById('contacto');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             CONSULTA GRATUITA
           </button>
         </div>
