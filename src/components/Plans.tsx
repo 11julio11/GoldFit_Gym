@@ -113,13 +113,13 @@ const Plans: React.FC = () => {
                       ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105'
                       : 'border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black'
                   }`}
-                }`}
-                onClick={() => {
-                  const contactSection = document.getElementById('contacto');
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}>
+                  onClick={() => {
+                    const contactSection = document.getElementById('contacto');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
                   {plan.popular ? 'CONTACTAR AHORA' : 'CONTACTAR'}
                 </button>
               </div>
