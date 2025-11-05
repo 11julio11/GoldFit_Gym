@@ -63,29 +63,29 @@ const Contact: React.FC = () => {
     <section id="contacto" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent mb-4">
             Contáctanos
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
             ¿Listo para transformar tu vida? Ponte en contacto con nosotros y comienza tu journey fitness hoy mismo.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Información de contacto */}
-          <div className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-6 md:space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               {contactInfo.map((info, index) => (
-                <div key={index} className="bg-gray-900 p-6 rounded-xl border border-yellow-500/20 hover:border-yellow-500/40 transition-all duration-300">
+                <div key={index} className="bg-gray-900 p-4 md:p-6 rounded-xl border border-yellow-500/20 hover:border-yellow-500/40 transition-all duration-300">
                   <div className="flex items-center mb-4">
-                    <div className="p-3 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg text-black mr-4">
+                    <div className="p-2 md:p-3 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg text-black mr-3 md:mr-4">
                       {info.icon}
                     </div>
-                    <h3 className="text-xl font-semibold text-white">{info.title}</h3>
+                    <h3 className="text-lg md:text-xl font-semibold text-white">{info.title}</h3>
                   </div>
                   <div className="space-y-1">
                     {info.details.map((detail, idx) => (
-                      <p key={idx} className="text-gray-300">{detail}</p>
+                      <p key={idx} className="text-sm md:text-base text-gray-300">{detail}</p>
                     ))}
                   </div>
                 </div>
@@ -93,14 +93,14 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Redes sociales */}
-            <div className="bg-gray-900 p-6 rounded-xl border border-yellow-500/20">
-              <h3 className="text-xl font-semibold text-white mb-4">Síguenos en redes</h3>
+            <div className="bg-gray-900 p-4 md:p-6 rounded-xl border border-yellow-500/20">
+              <h3 className="text-lg md:text-xl font-semibold text-white mb-4">Síguenos en redes</h3>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
                     href={social.url}
-                    className="p-3 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg text-black hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-110"
+                    className="p-2 md:p-3 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg text-black hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-110"
                     title={social.name}
                   >
                     {social.icon}
@@ -110,17 +110,17 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Promoción */}
-            <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 p-6 rounded-xl text-black">
-              <h3 className="text-xl font-bold mb-2">🎉 ¡Primera Clase GRATIS!</h3>
-              <p className="font-medium">
+            <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 p-4 md:p-6 rounded-xl text-black">
+              <h3 className="text-lg md:text-xl font-bold mb-2">🎉 ¡Primera Clase GRATIS!</h3>
+              <p className="text-sm md:text-base font-medium">
                 Agenda tu primera sesión sin costo y descubre por qué somos el mejor gimnasio de la ciudad.
               </p>
             </div>
           </div>
 
           {/* Formulario */}
-          <div className="bg-gray-900 p-8 rounded-xl border border-yellow-500/20">
-            <h3 className="text-2xl font-bold text-white mb-6">Envíanos un mensaje</h3>
+          <div className="bg-gray-900 p-6 md:p-8 rounded-xl border border-yellow-500/20">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-6">Envíanos un mensaje</h3>
 
             {state.succeeded && (
               <div className="mb-6 p-4 bg-green-900/50 border border-green-500 rounded-lg flex items-center">
@@ -137,7 +137,7 @@ const Contact: React.FC = () => {
             )}
 
             <form onSubmit={onSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                     Nombre completo *
@@ -182,7 +182,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">
                     Teléfono
@@ -256,16 +256,16 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={state.submitting}
-                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold py-4 px-6 rounded-lg hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center"
+                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold py-3 md:py-4 px-6 rounded-lg text-sm md:text-base hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center"
               >
                 {state.submitting ? (
                   <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black mr-3"></div>
+                    <div className="animate-spin rounded-full h-4 md:h-5 w-4 md:w-5 border-b-2 border-black mr-3"></div>
                     Enviando...
                   </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5 mr-2" />
+                    <Send className="w-4 md:w-5 h-4 md:h-5 mr-2" />
                     Enviar mensaje
                   </>
                 )}
