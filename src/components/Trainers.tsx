@@ -94,11 +94,11 @@ const Trainers: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {trainers.map((trainer, index) => (
             <div
               key={index}
-              className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow-500/20 transition-all duration-500 group border border-gray-700 hover:border-yellow-500/50"
+              className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-2xl hover:shadow-yellow-500/20 transition-all duration-500 group border border-gray-700 hover:border-yellow-500/50 w-full max-w-sm mx-auto"
             >
               {/* Badge PRO */}
               {trainer.isPro && (
@@ -112,7 +112,7 @@ const Trainers: React.FC = () => {
                 <img
                   src={trainer.image}
                   alt={trainer.name}
-                  className="w-full h-80 object-cover object-center transition-transform duration-700 group-hover:scale-105 z-0"
+                  className="w-full h-64 md:h-80 object-cover object-center transition-transform duration-700 group-hover:scale-105 z-0"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
 
@@ -123,11 +123,11 @@ const Trainers: React.FC = () => {
               </div>
 
               {/* Contenido */}
-              <div className="p-6">
+              <div className="p-4 md:p-6">
                 <div className="text-center mb-4">
-                  <h3 className="text-xl font-bold text-white mb-1">{trainer.name}</h3>
-                  <p className="text-yellow-400 font-medium text-lg">"{trainer.nickname}"</p>
-                  <p className="text-gray-300 text-sm">{trainer.specialty}</p>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-1">{trainer.name}</h3>
+                  <p className="text-yellow-400 font-medium text-base md:text-lg">"{trainer.nickname}"</p>
+                  <p className="text-gray-300 text-xs md:text-sm">{trainer.specialty}</p>
                 </div>
 
                 <div className="flex items-center justify-between mb-4">
@@ -142,7 +142,7 @@ const Trainers: React.FC = () => {
                   </div>
                 </div>
 
-                <p className="text-gray-300 text-sm mb-4 line-clamp-3">{trainer.bio}</p>
+                <p className="text-gray-300 text-xs md:text-sm mb-4 line-clamp-3">{trainer.bio}</p>
 
                 <div className="mb-4">
                   <div className="flex items-center mb-2">
@@ -152,7 +152,7 @@ const Trainers: React.FC = () => {
                   <div className="space-y-1">
                     {trainer.achievements.map((achievement, idx) => (
                       <div key={idx} className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg px-3 py-1">
-                        <span className="text-yellow-400 text-xs font-medium">{achievement}</span>
+                        <span className="text-yellow-400 text-xs md:text-sm font-medium">{achievement}</span>
                       </div>
                     ))}
                   </div>
@@ -167,7 +167,7 @@ const Trainers: React.FC = () => {
                     {trainer.certifications.map((cert, certIndex) => (
                       <span
                         key={certIndex}
-                        className="bg-gray-700 text-gray-300 text-xs px-2 py-1 rounded-full border border-gray-600"
+                        className="bg-gray-700 text-gray-300 text-xs md:text-sm px-2 py-1 rounded-full border border-gray-600"
                       >
                         {cert}
                       </span>
@@ -175,19 +175,19 @@ const Trainers: React.FC = () => {
                   </div>
                 </div>
 
-                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-3 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 mb-4">
+                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-2 md:py-3 rounded-lg font-bold text-sm md:text-base hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 mb-4">
                   Agendar Sesión
                 </button>
-                <div className="flex justify-center space-x-4 mt-4">
+                <div className="flex justify-center space-x-3 md:space-x-4 mt-4">
                   {trainer.socialMedia?.instagram && (
                     <a
                       href={trainer.socialMedia.instagram}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors duration-300"
+                      className="w-8 md:w-10 h-8 md:h-10 bg-white rounded-full flex items-center justify-center hover:bg-pink-500 hover:text-white transition-colors duration-300"
                       aria-label={`Instagram de ${trainer.name}`}
                     >
-                      <FaInstagram className="h-5 w-5" />
+                      <FaInstagram className="h-4 md:h-5 w-4 md:w-5" />
                     </a>
                   )}
                   {trainer.socialMedia?.facebook && (
@@ -195,10 +195,10 @@ const Trainers: React.FC = () => {
                       href={trainer.socialMedia.facebook}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                      className="w-8 md:w-10 h-8 md:h-10 bg-white rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors duration-300"
                       aria-label={`Facebook de ${trainer.name}`}
                     >
-                      <FaFacebook className="h-5 w-5" />
+                      <FaFacebook className="h-4 md:h-5 w-4 md:w-5" />
                     </a>
                   )}
                   {trainer.socialMedia?.tiktok && (
@@ -206,10 +206,10 @@ const Trainers: React.FC = () => {
                       href={trainer.socialMedia.tiktok}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-300"
+                      className="w-8 md:w-10 h-8 md:h-10 bg-white rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-300"
                       aria-label={`TikTok de ${trainer.name}`}
                     >
-                      <FaTiktok className="h-5 w-5" />
+                      <FaTiktok className="h-4 md:h-5 w-4 md:w-5" />
                     </a>
                   )}
                 </div>
