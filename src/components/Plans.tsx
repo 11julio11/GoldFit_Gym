@@ -3,7 +3,7 @@ import { Check, Star, Crown, Zap } from 'lucide-react';
 
 const Plans: React.FC = () => {
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
+    const contactSection = document.getElementById('contacto');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -115,12 +115,7 @@ const Plans: React.FC = () => {
                 </div>
 
                 <button
-                  onClick={() => {
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
+                  onClick={scrollToContact}
                   className={`w-full py-3 md:py-4 rounded-lg font-bold text-sm md:text-base lg:text-lg transition-all duration-300 ${
                     plan.popular
                       ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105'
