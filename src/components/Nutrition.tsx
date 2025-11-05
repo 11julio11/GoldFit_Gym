@@ -110,7 +110,13 @@ const Nutrition: React.FC = () => {
                   ))}
                 </div>
 
-                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-3 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300">
+                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-2 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300"
+                  onClick={() => {
+                    const contactSection = document.getElementById('contacto');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}>
                   Contactar Ahora
                 </button>
               </div>
