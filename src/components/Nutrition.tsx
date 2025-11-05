@@ -120,9 +120,14 @@ const Nutrition: React.FC = () => {
 
                 <button
                   className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-3 md:py-4 rounded-lg font-bold text-sm md:text-base hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105"
-                  onClick={scrollToContact}
+                  onClick={() => {
+                    const contactSection = document.getElementById('contacto');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                 >
-                  CONTACTAR AHORA
+                  Comenzar Plan
                 </button>
               </div>
             </div>
@@ -140,7 +145,12 @@ const Nutrition: React.FC = () => {
           </p>
           <button
             className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-sm md:text-base hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
-            onClick={scrollToContact}
+            onClick={() => {
+              const contactSection = document.getElementById('contacto');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
             CONSULTA GRATUITA
           </button>

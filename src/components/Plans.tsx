@@ -115,14 +115,19 @@ const Plans: React.FC = () => {
                 </div>
 
                 <button
+                  onClick={() => {
+                    const contactSection = document.getElementById('contacto');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   className={`w-full py-3 md:py-4 rounded-lg font-bold text-sm md:text-base lg:text-lg transition-all duration-300 ${
                     plan.popular
                       ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105'
                       : 'border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black'
                   }`}
-                  onClick={scrollToContact}
                 >
-                  {plan.popular ? 'CONTACTAR AHORA' : 'CONTACTAR'}
+                  {plan.popular ? 'COMENZAR AHORA' : 'ELEGIR PLAN'}
                 </button>
               </div>
             </div>
