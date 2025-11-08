@@ -51,11 +51,11 @@ const FloatingContactButton: React.FC = () => {
                   WhatsApp
                 </a>
                 <a
-                  href="#contacto"
+                  href="#contact"
                   className="bg-yellow-400 text-black w-full py-2 px-4 rounded flex items-center justify-center hover:bg-yellow-500 transition-colors duration-300"
                   onClick={e => {
                     e.preventDefault();
-                    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                     setIsOpen(false);
                   }}
                 >
