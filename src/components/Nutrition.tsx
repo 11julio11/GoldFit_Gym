@@ -3,7 +3,7 @@ import { Apple, Target, TrendingUp, Award, Clock, Users } from 'lucide-react';
 
 const Nutrition: React.FC = () => {
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
+    const element = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }

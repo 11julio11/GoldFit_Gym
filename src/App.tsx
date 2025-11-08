@@ -853,7 +853,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contacto">
+      <section id="contact">
         <Contact />
       </section>
 
