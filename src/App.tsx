@@ -62,7 +62,7 @@ function App() {
     { id: 'alimentacion', label: 'Alimentación' },
     { id: 'planes', label: 'Planes' },
     { id: 'comentarios', label: 'Testimonios' },
-    { id: 'contacto', label: 'Contacto' }
+    { id: 'contact', label: 'Contacto' }
   ];
 
   return (
