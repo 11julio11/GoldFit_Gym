@@ -3,7 +3,7 @@ import { Check, Star, Crown, Zap } from 'lucide-react';
 
 const Plans: React.FC = () => {
   const scrollToContact = () => {
-    const element = document.getElementById('contact');
+    const element = document.getElementById('contacto');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }

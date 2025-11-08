@@ -62,7 +62,7 @@ function App() {
     { id: 'alimentacion', label: 'Alimentación' },
     { id: 'planes', label: 'Planes' },
     { id: 'comentarios', label: 'Testimonios' },
-    { id: 'contact', label: 'Contacto' }
+    { id: 'contacto', label: 'Contacto' }
   ];
 
   return (
@@ -758,7 +758,7 @@ function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 overflow-hidden">
             {[
               {
                 name: 'María "Phoenix" González',
@@ -817,32 +817,42 @@ function App() {
             ].map((testimonial, index) => (
               <div 
                 key={index}
-                className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl p-6 shadow-2xl transform hover:scale-105 transition-all duration-300 border border-yellow-500/20 hover:border-yellow-500/50"
+                className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl p-6 shadow-2xl transform hover:scale-105 transition-all duration-500 border border-yellow-500/20 hover:border-yellow-500/50 hover:shadow-yellow-500/20 animate-fade-in-up group"
+                style={{
+                  animationDelay: `${index * 0.2}s`,
+                  animationFillMode: 'both'
+                }}
               >
                 <div className="flex items-center mb-4">
                   <img
                     src={testimonial.image}
                     alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover mr-4 border-2 border-yellow-500"
+                    className="w-16 h-16 rounded-full object-cover mr-4 border-2 border-yellow-500 transition-transform duration-300 group-hover:scale-110"
                   />
                   <div>
-                    <h3 className="font-bold text-lg text-yellow-400">{testimonial.name}</h3>
+                    <h3 className="font-bold text-lg text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300">{testimonial.name}</h3>
                     <p className="text-gray-400 text-sm">{testimonial.role}</p>
                     <div className="flex items-center mt-1">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
+                        <Star key={i} className="h-4 w-4 text-yellow-500 fill-current animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
                       ))}
                     </div>
                   </div>
                 </div>
-                <p className="text-gray-300 mb-4 italic">"{testimonial.comment}"</p>
+                <blockquote className="text-gray-300 mb-4 italic group-hover:text-white transition-colors duration-300">
                 <div className="bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-lg p-3 mb-3">
                   <p className="text-yellow-400 text-sm font-bold">
                     🏆 {testimonial.achievement}
                   </p>
                 </div>
                 <div className="text-center">
-                  <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-3 py-1 rounded-full text-xs font-bold">
+                <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 group-hover:bg-yellow-500/20 group-hover:border-yellow-500/50 transition-all duration-300">
+                    {testimonial.badge}
+                  </span>
+                </div>
+                
+                <div className="text-center mt-4">
+                  <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-3 py-1 rounded-full text-xs font-bold group-hover:from-yellow-300 group-hover:to-yellow-500 transition-all duration-300">
                     {testimonial.badge}
                   </span>
                 </div>
@@ -853,7 +863,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact">
+      <section id="contacto">
         <Contact />
       </section>
 

@@ -107,14 +107,56 @@ const Trainers: React.FC = () => {
                 </div>
               )}
 
-              {/* Imagen */}
+              {/* Imagen con overlay animado */}
               <div className="relative overflow-hidden">
                 <img
                   src={trainer.image}
                   alt={trainer.name}
-                  className="w-full h-64 md:h-80 object-cover object-center transition-transform duration-700 group-hover:scale-105 z-0"
+                  className="w-full h-64 md:h-80 object-cover object-center transition-transform duration-700 group-hover:scale-110 z-0"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+
+                {/* Overlay con bio y redes sociales */}
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center z-20">
+                  <div className="text-center transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300 px-4">
+                    <p className="text-white text-sm mb-4">{trainer.bio}</p>
+                    <div className="flex space-x-3 justify-center">
+                      {trainer.socialMedia?.instagram && (
+                        <a
+                          href={trainer.socialMedia.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg"
+                          aria-label={`Instagram de ${trainer.name}`}
+                        >
+                          <FaInstagram className="h-5 w-5 text-white" />
+                        </a>
+                      )}
+                      {trainer.socialMedia?.facebook && (
+                        <a
+                          href={trainer.socialMedia.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg"
+                          aria-label={`Facebook de ${trainer.name}`}
+                        >
+                          <FaFacebook className="h-5 w-5 text-white" />
+                        </a>
+                      )}
+                      {trainer.socialMedia?.tiktok && (
+                        <a
+                          href={trainer.socialMedia.tiktok}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-10 h-10 bg-black border-2 border-white rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg"
+                          aria-label={`TikTok de ${trainer.name}`}
+                        >
+                          <FaTiktok className="h-5 w-5 text-white" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
 
                 <div className="absolute bottom-4 left-4 flex items-center text-white text-sm z-20">
                   <MapPin className="w-4 h-4 mr-1 text-yellow-400" />
@@ -141,8 +183,6 @@ const Trainers: React.FC = () => {
                     {trainer.experience}
                   </div>
                 </div>
-
-                <p className="text-gray-300 text-xs md:text-sm mb-4 line-clamp-3">{trainer.bio}</p>
 
                 <div className="mb-4">
                   <div className="flex items-center mb-2">
@@ -178,43 +218,6 @@ const Trainers: React.FC = () => {
                 <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-2 md:py-3 rounded-lg font-bold text-sm md:text-base hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 mb-4">
                   Agendar Sesión
                 </button>
-                
-                {/* Redes Sociales */}
-                <div className="flex justify-center space-x-3 md:space-x-4">
-                  {trainer.socialMedia?.instagram && (
-                    <a
-                      href={trainer.socialMedia.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-8 md:w-10 h-8 md:h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg"
-                      aria-label={`Instagram de ${trainer.name}`}
-                    >
-                      <FaInstagram className="h-4 md:h-5 w-4 md:w-5" />
-                    </a>
-                  )}
-                  {trainer.socialMedia?.facebook && (
-                    <a
-                      href={trainer.socialMedia.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-8 md:w-10 h-8 md:h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg"
-                      aria-label={`Facebook de ${trainer.name}`}
-                    >
-                      <FaFacebook className="h-4 md:h-5 w-4 md:w-5" />
-                    </a>
-                  )}
-                  {trainer.socialMedia?.tiktok && (
-                    <a
-                      href={trainer.socialMedia.tiktok}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-8 md:w-10 h-8 md:h-10 bg-black border-2 border-white rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg"
-                      aria-label={`TikTok de ${trainer.name}`}
-                    >
-                      <FaTiktok className="h-4 md:h-5 w-4 md:w-5" />
-                    </a>
-                  )}
-                </div>
               </div>
             </div>
           ))}
