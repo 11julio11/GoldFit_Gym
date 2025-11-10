@@ -3,9 +3,9 @@ import { Check, Star, Crown, Zap } from 'lucide-react';
 
 const Plans: React.FC = () => {
   const scrollToContact = () => {
-    const element = document.getElementById('contacto');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    const contactSection = document.getElementById('contacto');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -73,7 +73,7 @@ const Plans: React.FC = () => {
             </span>
           </h2>
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
-            Elige el plan que mejor se adapte a tus objetivos y estilo de vida. 
+            Elige el plan que mejor se adapte a tus objetivos y estilo de vida.
             Todos incluyen acceso a nuestras instalaciones de clase mundial.
           </p>
         </div>
@@ -82,16 +82,15 @@ const Plans: React.FC = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative bg-gray-900/50 backdrop-blur-sm border-2 ${plan.color} rounded-xl overflow-hidden hover:shadow-lg hover:shadow-yellow-500/10 transition-all duration-300 group ${
-                plan.popular ? 'transform scale-105 lg:scale-110' : ''
-              }`}
+              className={`relative bg-gray-900/50 backdrop-blur-sm border-2 ${plan.color} rounded-xl overflow-hidden hover:shadow-lg hover:shadow-yellow-500/10 transition-all duration-300 group ${plan.popular ? 'transform scale-105 lg:scale-110' : ''
+                }`}
             >
               {plan.popular && (
                 <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-center py-2 font-bold text-xs md:text-sm">
                   MÁS POPULAR
                 </div>
               )}
-              
+
               <div className={`p-4 md:p-6 lg:p-8 ${plan.popular ? 'pt-8 md:pt-12' : ''}`}>
                 <div className="text-center mb-6 md:mb-8">
                   <div className="text-yellow-400 mb-3 md:mb-4 flex justify-center">
@@ -116,11 +115,10 @@ const Plans: React.FC = () => {
 
                 <button
                   onClick={scrollToContact}
-                  className={`w-full py-3 md:py-4 rounded-lg font-bold text-sm md:text-base lg:text-lg transition-all duration-300 ${
-                    plan.popular
+                  className={`w-full py-3 md:py-4 rounded-lg font-bold text-sm md:text-base lg:text-lg transition-all duration-300 ${plan.popular
                       ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105'
                       : 'border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black'
-                  }`}
+                    }`}
                 >
                   {plan.popular ? 'COMENZAR AHORA' : 'ELEGIR PLAN'}
                 </button>
@@ -136,7 +134,7 @@ const Plans: React.FC = () => {
               🎯 GARANTÍA DE SATISFACCIÓN
             </h3>
             <p className="text-sm md:text-base text-gray-300 mb-4 md:mb-6 px-4">
-              Si no estás completamente satisfecho en los primeros 30 días, 
+              Si no estás completamente satisfecho en los primeros 30 días,
               te devolvemos el 100% de tu dinero. Sin preguntas.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 text-center">
