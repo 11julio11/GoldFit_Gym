@@ -1,14 +1,11 @@
 import React from 'react';
 import { Check, Star, Crown, Zap } from 'lucide-react';
 
-const Plans: React.FC = () => {
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contacto');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+interface PlansProps {
+  scrollToContact: () => void;
+}
 
+const Plans: React.FC<PlansProps> = ({ scrollToContact }) => {
   const plans = [
     {
       name: "BÁSICO",

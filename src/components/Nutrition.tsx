@@ -1,14 +1,11 @@
 import React from 'react';
 import { Apple, Target, TrendingUp, Award, Clock, Users } from 'lucide-react';
 
-const Nutrition: React.FC = () => {
-  const scrollToContact = () => {
-    const element = document.getElementById('contacto');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+interface NutritionProps {
+  scrollToContact: () => void;
+}
 
+const Nutrition: React.FC<NutritionProps> = ({ scrollToContact }) => {
   const nutritionPlans = [
     {
       icon: <Target className="w-8 h-8" />,

@@ -102,34 +102,45 @@ const Trainers: React.FC = () => {
             >
               {/* Badge PRO */}
               {trainer.isPro && (
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-xs font-bold px-3 py-1 rounded-full z-10">
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black text-xs font-bold px-3 py-1 rounded-full z-30">
                   PRO
                 </div>
               )}
 
-              {/* Imagen con overlay animado */}
-              <div className="relative overflow-hidden">
+              {/* Contenedor de imagen */}
+              <div className="relative h-64 md:h-80 overflow-hidden">
                 <img
                   src={trainer.image}
                   alt={trainer.name}
-                  className="w-full h-64 md:h-80 object-cover object-center transition-transform duration-700 group-hover:scale-110 z-0"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+                
+                {/* Overlay permanente con gradiente */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                
+                {/* Ubicación */}
+                <div className="absolute bottom-4 left-4 flex items-center text-white text-sm z-10">
+                  <MapPin className="w-4 h-4 mr-1 text-yellow-400" />
+                  {trainer.location}
+                </div>
 
-                {/* Overlay con bio y redes sociales */}
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center z-20">
-                  <div className="text-center transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300 px-4">
-                    <p className="text-white text-sm mb-4">{trainer.bio}</p>
-                    <div className="flex space-x-3 justify-center">
+                {/* Overlay de redes sociales - SOLO EN HOVER */}
+                <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center z-20 p-6">
+                  <div className="text-center">
+                    <h4 className="text-yellow-400 font-bold text-lg mb-3">Sígueme en redes</h4>
+                    <p className="text-white text-sm mb-6 leading-relaxed">
+                      {trainer.bio}
+                    </p>
+                    <div className="flex space-x-4 justify-center">
                       {trainer.socialMedia?.instagram && (
                         <a
                           href={trainer.socialMedia.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg"
+                          className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-pink-500/30"
                           aria-label={`Instagram de ${trainer.name}`}
                         >
-                          <FaInstagram className="h-5 w-5 text-white" />
+                          <FaInstagram className="h-6 w-6 text-white" />
                         </a>
                       )}
                       {trainer.socialMedia?.facebook && (
@@ -137,10 +148,10 @@ const Trainers: React.FC = () => {
                           href={trainer.socialMedia.facebook}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg"
+                          className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-blue-500/30"
                           aria-label={`Facebook de ${trainer.name}`}
                         >
-                          <FaFacebook className="h-5 w-5 text-white" />
+                          <FaFacebook className="h-6 w-6 text-white" />
                         </a>
                       )}
                       {trainer.socialMedia?.tiktok && (
@@ -148,28 +159,23 @@ const Trainers: React.FC = () => {
                           href={trainer.socialMedia.tiktok}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-10 h-10 bg-black border-2 border-white rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg"
+                          className="w-12 h-12 bg-black border-2 border-white rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-white/30"
                           aria-label={`TikTok de ${trainer.name}`}
                         >
-                          <FaTiktok className="h-5 w-5 text-white" />
+                          <FaTiktok className="h-6 w-6 text-white" />
                         </a>
                       )}
                     </div>
                   </div>
                 </div>
-
-                <div className="absolute bottom-4 left-4 flex items-center text-white text-sm z-20">
-                  <MapPin className="w-4 h-4 mr-1 text-yellow-400" />
-                  {trainer.location}
-                </div>
               </div>
 
-              {/* Contenido */}
+              {/* Contenido de la tarjeta */}
               <div className="p-4 md:p-6">
                 <div className="text-center mb-4">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-1">{trainer.name}</h3>
                   <p className="text-yellow-400 font-medium text-base md:text-lg">"{trainer.nickname}"</p>
-                  <p className="text-gray-300 text-xs md:text-sm">{trainer.specialty}</p>
+                  <p className="text-gray-300 text-xs md:text-sm mt-2">{trainer.specialty}</p>
                 </div>
 
                 <div className="flex items-center justify-between mb-4">
@@ -215,9 +221,11 @@ const Trainers: React.FC = () => {
                   </div>
                 </div>
 
-                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-2 md:py-3 rounded-lg font-bold text-sm md:text-base hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105 mb-4">
+
+                {/* Se usara para futuras modificaciones */}
+                {/*<button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-2 md:py-3 rounded-lg font-bold text-sm md:text-base hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 transform hover:scale-105">
                   Agendar Sesión
-                </button>
+                </button>*/}
               </div>
             </div>
           ))}

@@ -20,6 +20,9 @@ import {
   PlayCircle,
   Download,
   MessageCircle} from 'lucide-react';
+import Plans from './components/Plans';
+import Nutrition from './components/Nutrition';
+import Trainers from './components/Trainers';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -282,94 +285,13 @@ function App() {
       </section>
 
       {/* Trainers Section */}
-      <section id="entrenadores" className="py-20 bg-black">
+      <section id="servicios" className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Award className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Entrenadores <span className="text-yellow-500">Campeones</span>
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Conoce a nuestro equipo de atletas profesionales y entrenadores certificados
-            </p>
+    
+             <Trainers />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                name: 'Carlos "El Titán" Mendoza',
-                specialty: 'Powerlifting & Fuerza',
-                experience: '8 años de experiencia',
-                image: 'https://images.pexels.com/photos/1431282/pexels-photo-1431282.jpeg?auto=compress&cs=tinysrgb&w=400',
-                certifications: ['NASM-CPT', 'Powerlifting Coach', 'Campeón Nacional'],
-                achievements: 'Record Nacional Deadlift'
-              },
-              {
-                name: 'Ana "Warrior" García',
-                specialty: 'Yoga & Mindfulness',
-                experience: '6 años de experiencia',
-                image: 'https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&w=400',
-                certifications: ['RYT-500', 'Pilates Master', 'Meditation Coach'],
-                achievements: 'Instructora Internacional'
-              },
-              {
-                name: 'Miguel "Beast" Torres',
-                specialty: 'CrossFit & Funcional',
-                experience: '10 años de experiencia',
-                image: 'https://images.pexels.com/photos/1229356/pexels-photo-1229356.jpeg?auto=compress&cs=tinysrgb&w=400',
-                certifications: ['CrossFit L3', 'Olympic Lifting', 'Functional Movement'],
-                achievements: 'Ex-Atleta Olímpico'
-              },
-              {
-                name: 'Laura "Nutrition Queen" Ruiz',
-                specialty: 'Nutrición de Elite',
-                experience: '5 años de experiencia',
-                image: 'https://images.pexels.com/photos/3768997/pexels-photo-3768997.jpeg?auto=compress&cs=tinysrgb&w=400',
-                certifications: ['PhD Nutrición', 'Sports Nutrition', 'Metabolic Specialist'],
-                achievements: 'Nutricionista Olímpica'
-              }
-            ].map((trainer, index) => (
-              <div 
-                key={index}
-                className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 border border-yellow-500/20 hover:border-yellow-500/50"
-              >
-                <div className="relative">
-                  <div 
-                    className="h-64 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${trainer.image})` }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                  </div>
-                  <div className="absolute top-4 right-4">
-                    <div className="bg-yellow-500 text-black px-2 py-1 rounded-full text-xs font-bold">
-                      PRO
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-bold mb-1 text-yellow-400">{trainer.name}</h3>
-                  <p className="text-yellow-500 font-medium mb-1">{trainer.specialty}</p>
-                  <p className="text-gray-400 text-sm mb-2">{trainer.experience}</p>
-                  <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-2 mb-3">
-                    <p className="text-yellow-400 text-xs font-medium">
-                      🏆 {trainer.achievements}
-                    </p>
-                  </div>
-                  <div className="space-y-1">
-                    {trainer.certifications.map((cert, certIndex) => (
-                      <span 
-                        key={certIndex}
-                        className="inline-block bg-gray-700 border border-yellow-500/30 text-yellow-300 text-xs px-2 py-1 rounded mr-1 mb-1"
-                      >
-                        {cert}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+       
       </section>
 
       {/* Gallery Section */}
@@ -531,6 +453,7 @@ function App() {
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Alimentación científica diseñada para maximizar tu rendimiento y transformación
             </p>
+             <Nutrition scrollToContact={() => scrollToSection('contacto')} />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
@@ -649,6 +572,7 @@ function App() {
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Elige tu nivel de elite y comienza tu transformación hacia la grandeza
             </p>
+             <Plans scrollToContact={() => scrollToSection('contacto')} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
