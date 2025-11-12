@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import FloatingContactButton from './components/FloatingContactButton';
 import Contacto from './components/Contact';
 
-import { 
-  Menu, 
-  X, 
-  Dumbbell, 
-  Users, 
+import {
+  Menu,
+  X,
+  Dumbbell,
+  Users,
   Star,
   CheckCircle,
   ArrowRight,
@@ -18,11 +18,12 @@ import {
   Shield,
   TrendingUp,
   PlayCircle,
-  Download,
-  MessageCircle} from 'lucide-react';
+  MessageCircle
+} from 'lucide-react';
 import Plans from './components/Plans';
 import Nutrition from './components/Nutrition';
 import Trainers from './components/Trainers';
+import Gallery from './components/Gallery';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,7 +81,7 @@ function App() {
                 GoldFit Gym
               </span>
             </div>
-            
+
             {/* Desktop Menu */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
@@ -88,11 +89,10 @@ function App() {
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
-                      activeSection === item.id
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${activeSection === item.id
                         ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black shadow-lg shadow-yellow-500/25'
                         : 'text-gray-300 hover:bg-yellow-500/10 hover:text-yellow-400 border border-transparent hover:border-yellow-500/30'
-                    }`}
+                      }`}
                   >
                     {item.label}
                   </button>
@@ -120,11 +120,10 @@ function App() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 ${
-                    activeSection === item.id
+                  className={`block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-all duration-300 ${activeSection === item.id
                       ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black'
                       : 'text-gray-300 hover:bg-yellow-500/10 hover:text-yellow-400 border border-transparent hover:border-yellow-500/30'
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </button>
@@ -136,7 +135,7 @@ function App() {
 
       {/* Hero Section */}
       <section id="inicio" className="relative h-screen flex items-center justify-center">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop)',
@@ -144,7 +143,7 @@ function App() {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
         </div>
-        
+
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
           <div className="mb-6">
             <Award className="h-16 w-16 text-yellow-500 mx-auto mb-4 animate-pulse" />
@@ -156,7 +155,7 @@ function App() {
             Entrena con equipos de élite, entrenadores campeones y una comunidad de guerreros
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
+            <button
               onClick={() => scrollToSection('planes')}
               className="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg shadow-yellow-500/25"
             >
@@ -164,7 +163,7 @@ function App() {
               Únete a la Elite
               <ArrowRight className="h-5 w-5" />
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('servicios')}
               className="border-2 border-yellow-500 text-yellow-400 hover:bg-yellow-500 hover:text-black px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2"
             >
@@ -172,7 +171,7 @@ function App() {
               Ver Programas
             </button>
           </div>
-          
+
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16">
             <div className="text-center">
@@ -252,11 +251,11 @@ function App() {
                 features: ['Movimiento natural', 'Prevención lesiones', 'Rendimiento deportivo']
               }
             ].map((service, index) => (
-              <div 
+              <div
                 key={index}
                 className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 border border-yellow-500/20 hover:border-yellow-500/50"
               >
-                <div 
+                <div
                   className="h-48 bg-cover bg-center relative"
                   style={{ backgroundImage: `url(${service.image})` }}
                 >
@@ -287,102 +286,16 @@ function App() {
       {/* Trainers Section */}
       <section id="servicios" className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    
-             <Trainers />
-          </div>
 
-       
+          <Trainers />
+        </div>
+
+
       </section>
 
       {/* Gallery Section */}
       <section id="galeria" className="py-20 bg-gradient-to-b from-gray-900 to-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Zap className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Galería de <span className="text-yellow-500">Entrenamientos</span>
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Descubre nuestros equipos de élite y zonas de entrenamiento especializadas
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                image: 'https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=600',
-                exercise: 'Zona de Pesas Libres',
-                description: 'Equipos profesionales de fuerza'
-              },
-              {
-                image: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=600',
-                exercise: 'Área de Powerlifting',
-                description: 'Plataformas de competición'
-              },
-              {
-                image: 'https://images.pexels.com/photos/1552106/pexels-photo-1552106.jpeg?auto=compress&cs=tinysrgb&w=600',
-                exercise: 'Cardio Premium',
-                description: 'Máquinas de última generación'
-              },
-              {
-                image: 'https://images.pexels.com/photos/3289711/pexels-photo-3289711.jpeg?auto=compress&cs=tinysrgb&w=600',
-                exercise: 'Entrenamiento Personal',
-                description: 'Sesiones individualizadas'
-              },
-              {
-                image: 'https://images.pexels.com/photos/3076509/pexels-photo-3076509.jpeg?auto=compress&cs=tinysrgb&w=600',
-                exercise: 'Clases Grupales',
-                description: 'Entrenamientos en equipo'
-              },
-              {
-                image: 'https://images.pexels.com/photos/3253501/pexels-photo-3253501.jpeg?auto=compress&cs=tinysrgb&w=600',
-                exercise: 'Entrenamiento Funcional',
-                description: 'Movimientos naturales'
-              },
-              {
-                image: 'https://images.pexels.com/photos/1552103/pexels-photo-1552103.jpeg?auto=compress&cs=tinysrgb&w=600',
-                exercise: 'Zona CrossFit',
-                description: 'Box de alta intensidad'
-              },
-              {
-                image: 'https://images.pexels.com/photos/2247179/pexels-photo-2247179.jpeg?auto=compress&cs=tinysrgb&w=600',
-                exercise: 'Área de Stretching',
-                description: 'Recuperación y flexibilidad'
-              },
-              {
-                image: 'https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=600',
-                exercise: 'Zona de Combate',
-                description: 'Artes marciales y boxeo'
-              }
-            ].map((item, index) => (
-              <div 
-                key={index}
-                className="relative overflow-hidden rounded-xl shadow-2xl group cursor-pointer border border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300"
-              >
-                <img
-                  src={item.image}
-                  alt={item.exercise}
-                  className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-yellow-400 text-lg font-bold mb-2">{item.exercise}</h3>
-                    <p className="text-gray-300 text-sm">{item.description}</p>
-                    <div className="mt-3 flex items-center text-yellow-500">
-                      <Dumbbell className="h-4 w-4 mr-2" />
-                      <span className="text-xs font-medium">ZONA PREMIUM</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-yellow-500 text-black p-2 rounded-full">
-                    <PlayCircle className="h-5 w-5" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Gallery />
       </section>
 
       {/* About Section */}
@@ -395,8 +308,8 @@ function App() {
                 Sobre <span className="text-yellow-500">GoldFit Gym</span>
               </h2>
               <p className="text-lg text-gray-300 mb-6">
-                Con más de una década forjando campeones, GoldFit Gym se ha convertido en el templo 
-                dorado del fitness de élite. Nuestro legado está construido sobre la excelencia, 
+                Con más de una década forjando campeones, GoldFit Gym se ha convertido en el templo
+                dorado del fitness de élite. Nuestro legado está construido sobre la excelencia,
                 la dedicación y la transformación de vidas ordinarias en leyendas extraordinarias.
               </p>
               <div className="grid grid-cols-2 gap-6 mb-8">
@@ -418,13 +331,14 @@ function App() {
                 </div>
               </div>
               <div className="flex space-x-4">
-                <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 flex items-center gap-2">
+                {/* se usaran para futuras modificaciones */}
+                {/* <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300 flex items-center gap-2">
                   <Download className="h-5 w-5" />
                   Descargar App
                 </button>
                 <button className="border border-yellow-500 text-yellow-400 px-6 py-3 rounded-lg font-bold hover:bg-yellow-500 hover:text-black transition-all duration-300">
                   Tour Virtual
-                </button>
+                </button> */}
               </div>
             </div>
             <div className="relative">
@@ -453,7 +367,7 @@ function App() {
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Alimentación científica diseñada para maximizar tu rendimiento y transformación
             </p>
-             <Nutrition scrollToContact={() => scrollToSection('contacto')} />
+            <Nutrition scrollToContact={() => scrollToSection('contacto')} />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
@@ -526,11 +440,11 @@ function App() {
                 price: '$299/mes'
               }
             ].map((plan, index) => (
-              <div 
+              <div
                 key={index}
                 className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 border border-yellow-500/20 hover:border-yellow-500/50"
               >
-                <div 
+                <div
                   className="h-48 bg-cover bg-center relative"
                   style={{ backgroundImage: `url(${plan.image})` }}
                 >
@@ -572,7 +486,7 @@ function App() {
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Elige tu nivel de elite y comienza tu transformación hacia la grandeza
             </p>
-             <Plans scrollToContact={() => scrollToSection('contacto')} />
+            <Plans scrollToContact={() => scrollToSection('contacto')} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -623,13 +537,12 @@ function App() {
                 color: 'from-yellow-500 to-yellow-700'
               }
             ].map((plan, index) => (
-              <div 
+              <div
                 key={index}
-                className={`relative rounded-xl p-8 shadow-2xl border-2 transition-all duration-300 transform hover:scale-105 ${
-                  plan.popular 
-                    ? 'border-yellow-500 bg-gradient-to-b from-yellow-500/10 to-black scale-110' 
+                className={`relative rounded-xl p-8 shadow-2xl border-2 transition-all duration-300 transform hover:scale-105 ${plan.popular
+                    ? 'border-yellow-500 bg-gradient-to-b from-yellow-500/10 to-black scale-110'
                     : 'border-yellow-500/30 bg-gradient-to-b from-gray-800 to-gray-900 hover:border-yellow-500/50'
-                }`}
+                  }`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -638,7 +551,7 @@ function App() {
                     </span>
                   </div>
                 )}
-                
+
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold mb-4 text-yellow-400">{plan.name}</h3>
                   <div className="mb-4">
@@ -656,11 +569,10 @@ function App() {
                   ))}
                 </ul>
 
-                <button className={`w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 ${
-                  plan.popular
+                <button className={`w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 ${plan.popular
                     ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black shadow-lg shadow-yellow-500/25'
                     : 'bg-gradient-to-r from-gray-700 to-gray-800 hover:from-yellow-500 hover:to-yellow-600 text-white hover:text-black border border-yellow-500/30 hover:border-yellow-500'
-                }`}>
+                  }`}>
                   {plan.popular ? 'COMENZAR AHORA' : 'ELEGIR PLAN'}
                 </button>
               </div>
@@ -739,7 +651,7 @@ function App() {
                 badge: 'ENDURANCE MASTER'
               }
             ].map((testimonial, index) => (
-              <div 
+              <div
                 key={index}
                 className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl p-6 shadow-2xl transform hover:scale-105 transition-all duration-500 border border-yellow-500/20 hover:border-yellow-500/50 hover:shadow-yellow-500/20 animate-fade-in-up group"
                 style={{
@@ -770,11 +682,11 @@ function App() {
                   </p>
                 </div>
                 <div className="text-center">
-                <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 group-hover:bg-yellow-500/20 group-hover:border-yellow-500/50 transition-all duration-300">
+                  <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3 group-hover:bg-yellow-500/20 group-hover:border-yellow-500/50 transition-all duration-300">
                     {testimonial.badge}
                   </div>
                 </div>
-                
+
                 <div className="text-center mt-4">
                   <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-3 py-1 rounded-full text-xs font-bold group-hover:from-yellow-300 group-hover:to-yellow-500 transition-all duration-300">
                     {testimonial.badge}
@@ -816,13 +728,13 @@ function App() {
               </button>
             </div>
             <p className="text-gray-500 text-sm">
-              © 2024 GoldFit Gym. Todos los derechos reservados. Forjando leyendas desde 2014.
+              © {new Date().getFullYear()} GoldFit Gym. Todos los derechos reservados. Forjando leyendas desde 2014.
             </p>
           </div>
         </div>
       </footer>
 
-  <FloatingContactButton />
+      <FloatingContactButton />
     </div>
   );
 }
