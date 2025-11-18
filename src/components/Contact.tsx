@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { MapPin, Phone, Mail, Clock, Send, Instagram, Facebook, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
 
@@ -12,6 +12,19 @@ const Contact: React.FC = () => {
     message: ''
   });
 
+  // 🔥 FIX: limpiar formulario cuando state.succeeded cambie a true
+  useEffect(() => {
+    if (state.succeeded) {
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        objective: '',
+        message: ''
+      });
+    }
+  }, [state.succeeded]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -23,11 +36,6 @@ const Contact: React.FC = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await handleSubmit(e);
-    
-    // Limpiar formulario si se envió exitosamente
-    if (state.succeeded) {
-      setFormData({ name: '', email: '', phone: '', objective: '', message: '' });
-    }
   };
 
   const contactInfo = [

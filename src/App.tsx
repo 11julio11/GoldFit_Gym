@@ -7,7 +7,6 @@ import {
   X,
   Dumbbell,
   Users,
-  Star,
   CheckCircle,
   ArrowRight,
   Calendar,
@@ -18,8 +17,8 @@ import {
   Shield,
   TrendingUp,
   PlayCircle,
-  MessageCircle
-} from 'lucide-react';
+  Star,
+  MessageCircle} from 'lucide-react';
 import Plans from './components/Plans';
 import Nutrition from './components/Nutrition';
 import Trainers from './components/Trainers';
@@ -69,9 +68,17 @@ function App() {
     { id: 'contacto', label: 'Contacto' }
   ];
 
+ function scrollToContact(event: React.MouseEvent<HTMLButtonElement>): void {
+  event.preventDefault();
+
+  const section = document.getElementById("contacto");
+  section?.scrollIntoView({ behavior: "smooth" });
+}
+
+
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Navigation */}
+      {/* Navigation */}ja
       <nav className="fixed top-0 left-0 right-0 bg-black/95 backdrop-blur-sm z-50 border-b border-yellow-500/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -465,7 +472,9 @@ function App() {
                       </li>
                     ))}
                   </ul>
-                  <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-2 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300">
+                  <button 
+                   onClick={scrollToContact}
+                   className="w-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black py-2 rounded-lg font-bold hover:from-yellow-500 hover:to-yellow-700 transition-all duration-300">
                     Comenzar Plan
                   </button>
                 </div>
@@ -489,95 +498,7 @@ function App() {
             <Plans scrollToContact={() => scrollToSection('contacto')} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'Guerrero',
-                price: '$49',
-                period: '/mes',
-                features: [
-                  'Acceso completo 24/7',
-                  'Todas las zonas de entrenamiento',
-                  'Vestidores premium con sauna',
-                  'App móvil con seguimiento',
-                  'Clases grupales básicas'
-                ],
-                popular: false,
-                color: 'from-gray-700 to-gray-800'
-              },
-              {
-                name: 'Campeón',
-                price: '$89',
-                period: '/mes',
-                features: [
-                  'Todo lo del plan Guerrero',
-                  'Clases grupales premium ilimitadas',
-                  '4 sesiones de entrenamiento personal',
-                  'Plan nutricional personalizado',
-                  'Zona VIP con equipos exclusivos',
-                  'Estacionamiento premium'
-                ],
-                popular: true,
-                color: 'from-yellow-400 to-yellow-600'
-              },
-              {
-                name: 'Leyenda',
-                price: '$149',
-                period: '/mes',
-                features: [
-                  'Todo lo del plan Campeón',
-                  'Entrenamiento personal ilimitado',
-                  'Nutricionista personal dedicado',
-                  'Masajes deportivos incluidos',
-                  'Acceso a eventos exclusivos',
-                  'Concierge fitness personal',
-                  'Suplementación premium incluida'
-                ],
-                popular: false,
-                color: 'from-yellow-500 to-yellow-700'
-              }
-            ].map((plan, index) => (
-              <div
-                key={index}
-                className={`relative rounded-xl p-8 shadow-2xl border-2 transition-all duration-300 transform hover:scale-105 ${plan.popular
-                    ? 'border-yellow-500 bg-gradient-to-b from-yellow-500/10 to-black scale-110'
-                    : 'border-yellow-500/30 bg-gradient-to-b from-gray-800 to-gray-900 hover:border-yellow-500/50'
-                  }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-2 rounded-full text-sm font-bold shadow-lg">
-                      🏆 MÁS POPULAR
-                    </span>
-                  </div>
-                )}
-
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-4 text-yellow-400">{plan.name}</h3>
-                  <div className="mb-4">
-                    <span className="text-4xl font-bold text-white">{plan.price}</span>
-                    <span className="text-gray-400">{plan.period}</span>
-                  </div>
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-yellow-500 mr-3" />
-                      <span className="text-gray-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button className={`w-full py-4 rounded-lg font-bold text-lg transition-all duration-300 ${plan.popular
-                    ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black shadow-lg shadow-yellow-500/25'
-                    : 'bg-gradient-to-r from-gray-700 to-gray-800 hover:from-yellow-500 hover:to-yellow-600 text-white hover:text-black border border-yellow-500/30 hover:border-yellow-500'
-                  }`}>
-                  {plan.popular ? 'COMENZAR AHORA' : 'ELEGIR PLAN'}
-                </button>
-              </div>
-            ))}
-          </div>
+         
         </div>
       </section>
 

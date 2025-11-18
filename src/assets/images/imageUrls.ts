@@ -33,12 +33,7 @@ export const imageUrls = {
     stretching: 'https://images.pexels.com/photos/1552103/pexels-photo-1552103.jpeg?auto=compress&cs=tinysrgb&w=600'
   },
   
-  // Videos
-  videos: {
-    workoutDemo: 'https://player.vimeo.com/video/76979871',
-    classPreview: 'https://player.vimeo.com/video/76979871',
-    facilityTour: 'https://player.vimeo.com/video/76979871'
-  },
+ 
   
   // Testimonials
   testimonials: {

@@ -56,7 +56,7 @@ const Testimonials: React.FC = () => {
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Conoce las increíbles transformaciones de nuestros miembros. 
+            Conoce las increíbles transformaciones de nuestros miembros.
             Sus logros son nuestra mayor motivación.
           </p>
         </div>
@@ -78,7 +78,7 @@ const Testimonials: React.FC = () => {
                     {testimonial.icon}
                   </div>
                 </div>
-                
+
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <div>
@@ -93,7 +93,7 @@ const Testimonials: React.FC = () => {
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 border border-yellow-500/30 rounded-lg px-3 py-1 inline-flex items-center space-x-2 mb-3">
                     <span className="text-yellow-400 text-sm font-medium">{testimonial.badge}</span>
                   </div>
@@ -119,7 +119,7 @@ const Testimonials: React.FC = () => {
               RESULTADOS QUE <span className="text-yellow-400">HABLAN</span>
             </h3>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
               <div className="text-3xl font-bold text-yellow-400 mb-2">95%</div>
@@ -141,12 +141,12 @@ const Testimonials: React.FC = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <p className="text-gray-300 mb-6">¿Listo para escribir tu propia historia de éxito?</p>
           <button className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-4 rounded-lg font-bold text-lg hover:from-yellow-500 hover:to-yellow-700 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-yellow-500/25">
             COMIENZA TU TRANSFORMACIÓN
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
