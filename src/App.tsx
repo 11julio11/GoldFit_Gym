@@ -21,7 +21,7 @@ import {
   MessageCircle} from 'lucide-react';
 import Plans from './components/Plans';
 import Nutrition from './components/Nutrition';
-import Trainers from './components/Trainers';
+import Trainers from './components/trainers';
 import Gallery from './components/Gallery';
 
 function App() {
